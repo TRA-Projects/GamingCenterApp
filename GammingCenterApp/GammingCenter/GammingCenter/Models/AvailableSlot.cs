@@ -17,7 +17,7 @@ namespace GammingCenter.Models
 
 
         [Required(ErrorMessage = "Availability status is required")]
-        public bool IsAvailable { get; set; }
+        public bool IsAvailable { get; set; } = true;
 
 
         [Required(ErrorMessage = "Slot date is required")]
