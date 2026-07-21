@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GammingCenter.Models
@@ -29,5 +30,12 @@ namespace GammingCenter.Models
         [Required(ErrorMessage = "Room status is required")]
         [MaxLength(30, ErrorMessage = "Room status cannot exceed 30 characters")]
         public string RoomStatus { get; set; } = "Available"; //Available, Occupied, Reserved, Maintenance 
+
+
+       //Navigation Properties
+            public virtual List<Competition> Competitions { get; set; } = new List<Competition>();
+
+        public virtual List<GamingDevice> GamingDevices { get; set; } = new List<GamingDevice>();
+
     }
 }

@@ -20,5 +20,11 @@ namespace GammingCenter.Models
         [MaxLength(250, ErrorMessage = "Description cannot exceed 250 characters")]
         public string Description { get; set; }
         // Optional, Max 250 characters
+
+
+
+        // Navigation Property
+        // One BookingType has Many Bookings
+        public virtual List<Booking> Bookings { get; set; }
     }
-    }
+}

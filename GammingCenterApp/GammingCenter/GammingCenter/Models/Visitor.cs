@@ -31,5 +31,11 @@ namespace GammingCenter.Models
         public string Gender { get; set; } // user input
 
 
+        // Navigation Property
+        // reverse navigation - one Visitor can write many Reviews
+        public List<Review> Reviews { get; set; } = new List<Review>();
+
+
+        public List<Booking> bookings { get; set; } = new List<Booking>();
     }
 }

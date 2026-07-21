@@ -39,7 +39,15 @@ namespace GammingCenter.Models
 
         [Required(ErrorMessage = "Devices name is required")]
         [MaxLength(100, ErrorMessage = "Devices name cannot exceed 100 characters")]
-        public string DevicesName { get; set; } 
+        public string DevicesName { get; set; }
+
+        // Foreign Key
+        [Required]
+        [ForeignKey("Room ")]
+        public int RoomId { get; set; } 
+        
+       
+        public virtual Room Room { get; set; }
 
     }
 }

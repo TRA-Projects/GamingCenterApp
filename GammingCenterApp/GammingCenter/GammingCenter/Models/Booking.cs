@@ -24,6 +24,9 @@ namespace GammingCenter.Models
         [StringLength(30)]
         public string Status { get; set; }
 
+
+
+
        
     }
 }

@@ -15,7 +15,7 @@ namespace GammingCenter.Models
         public int rating { get; set; } // user input - from 1 to 5
 
 
-        public string comment { get; set; } // user input
+        public string? comment { get; set; } // user input
 
 
         [Required]
@@ -23,13 +23,19 @@ namespace GammingCenter.Models
 
 
         // foreign key - links to Visitor ID
-        [Required] 
+        [Required]
+        [ForeignKey("Visitor")]
         public int visitorId { get; set; } // from list -selected visitor
+        public virtual Visitor Visitor { get; set; }
+
 
 
         // foreign key - links to GamingDevice ID
-        [Required] 
+        [Required]
+        [ForeignKey("GamingDevice")]
         public int deviceId { get; set; } // from list - selected device
+
+        public virtual GamingDevice GamingDevice { get; set; }
 
 
 
