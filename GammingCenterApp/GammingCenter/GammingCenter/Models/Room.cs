@@ -6,6 +6,7 @@ namespace GammingCenter.Models
     [Table("Room")]
     public class Room
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoomId { get; set; }
@@ -18,7 +19,7 @@ namespace GammingCenter.Models
         [MaxLength(50)]
         public string RoomType { get; set; }
 
-        [Range(1, 1000)]
+        [Range(1, 100, ErrorMessage = "Capacity must be between 1 and 100")]
         public int Capacity { get; set; }
 
         [Required]
