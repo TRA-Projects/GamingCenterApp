@@ -58,5 +58,9 @@ namespace GammingCenter.Models
 
         public virtual AvailableSlot AvailableSlot { get; set; } // navigation property
 
+
+
+
+       
     }
 }

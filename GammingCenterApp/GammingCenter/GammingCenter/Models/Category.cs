@@ -15,7 +15,10 @@ namespace GammingCenter.Models
         public string categoryName { get; set; } // user input
         [MaxLength(100)]
         public string description { get; set; } // user input 
-       
 
+
+
+        // reverse navigation - one Category contains many GamingDevices
+        public List<GamingDevice> GamingDevices { get; set; } = new List<GamingDevice>();
     }
 }
