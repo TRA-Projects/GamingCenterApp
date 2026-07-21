@@ -6,8 +6,8 @@ namespace GammingCenter.Models
     public class GamingDevice
     {
         [Key]
-        public int DeviceID { get; set; }
-        // System Generated
+        public int DeviceID { get; set; }         // System Generated
+
 
         [Required(ErrorMessage = "Device Name is required")]
         [MaxLength(100, ErrorMessage = "Device name cannot exceed 100 characters")]
