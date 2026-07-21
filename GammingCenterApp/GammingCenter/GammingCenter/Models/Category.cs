@@ -8,15 +8,14 @@ namespace GammingCenter.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CategoryId { get; set; } // system generated
+        public int categoryId { get; set; }// system generated 
 
         [Required]
         [MaxLength(100)]
-        public string CategoryName { get; set; } // user input
-
-        [Required]
-        public string Description { get; set; }
-
+        public string categoryName { get; set; } // user input
+        [MaxLength(100)]
+        public string description { get; set; } // user input 
+       
 
     }
 }
