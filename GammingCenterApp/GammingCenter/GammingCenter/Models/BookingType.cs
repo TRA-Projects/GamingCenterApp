@@ -1,6 +1,24 @@
-﻿namespace GammingCenter.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GammingCenter.Models
 {
     public class BookingType
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int BookingTypeID { get; set; }
+        // Primary Key, System Generated
+
+
+        [Required(ErrorMessage = "Booking type name is required")]
+        [MaxLength(50, ErrorMessage = "Booking type name cannot exceed 50 characters")]
+        public string TypeName { get; set; }
+        // Required, Max 50 characters
+
+
+        [MaxLength(250, ErrorMessage = "Description cannot exceed 250 characters")]
+        public string Description { get; set; }
+        // Optional, Max 250 characters
     }
-}
+    }
