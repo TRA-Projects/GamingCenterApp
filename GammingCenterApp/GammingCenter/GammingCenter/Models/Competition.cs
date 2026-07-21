@@ -34,7 +34,7 @@ namespace GammingCenter.Models
 
         [Required(ErrorMessage = "Competition status is required")]
         [MaxLength(50, ErrorMessage = "Competition status cannot exceed 50 characters")]
-        public string CompetitionStatus { get; set; } 
+        public string CompetitionStatus { get; set; } = "Upcoming"; //Ongoing, Completed, Cancelled
 
 
         [Required(ErrorMessage = "Devices name is required")]

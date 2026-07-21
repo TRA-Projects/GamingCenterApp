@@ -28,6 +28,6 @@ namespace GammingCenter.Models
 
         [Required(ErrorMessage = "Room status is required")]
         [MaxLength(30, ErrorMessage = "Room status cannot exceed 30 characters")]
-        public string RoomStatus { get; set; } 
+        public string RoomStatus { get; set; } = "Available"; //Available, Occupied, Reserved, Maintenance 
     }
 }
