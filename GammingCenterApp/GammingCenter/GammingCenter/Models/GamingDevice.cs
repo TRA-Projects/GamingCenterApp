@@ -29,7 +29,9 @@ public class GamingDevice
     // Required, Greater than 0, Decimal(10,2)
 
 
-    public bool Status { get; set; }
+    [Required]
+    [MaxLength(20)]
+    public string Status { get; set; }
 
     public bool IsAvailable { get; set; }
 
