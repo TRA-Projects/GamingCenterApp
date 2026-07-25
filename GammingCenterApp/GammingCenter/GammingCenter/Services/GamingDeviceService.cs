@@ -12,6 +12,14 @@ namespace GammingCenter.Services
             _repository = repository;
         }
 
+        //////////////////////////////////////////////////////////////////
+
+
+        //Add Gaming Device
+        public void AddGamingDevice(GamingDeviceCreateDto dto)
+        {
+
+        }
 
     }
 }
