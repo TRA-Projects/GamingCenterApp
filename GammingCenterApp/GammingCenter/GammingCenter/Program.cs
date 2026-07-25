@@ -10,70 +10,68 @@ namespace GammingCenter
         public static void Main(string[] args)
         {
 
-            //// ── Manual wiring ──────────────────────────────────────────────
-            //GammingCenterContext context = new GammingCenterContext();
 
-            //// Repositories
-            //VisitorRepository visitorRepo = new VisitorRepository(context);
-            //GamingDeviceRepository gamingDeviceRepo = new GamingDeviceRepository(context);
-            //CategoryRepository categoryRepo = new CategoryRepository(context);
-            //BookingRepository bookingRepo = new BookingRepository(context);
-            //PaymentRepository paymentRepo = new PaymentRepository(context);
-            //RoomRepository roomRepo = new RoomRepository(context);
-            //ReviewRepository reviewRepo = new ReviewRepository(context);
-            //AvailableSlotRepository availableSlotRepo = new AvailableSlotRepository(context);
-            //CompetitionRepository competitionRepo = new CompetitionRepository(context);
-            //BookingTypeRepository bookingTypeRepo = new BookingTypeRepository(context);
-
-            //// Services
-            //VisitorService visitorService = new VisitorService(visitorRepo);
-            //GamingDeviceService gamingDeviceService = new GamingDeviceService(gamingDeviceRepo);
-            //CategoryService categoryService = new CategoryService(categoryRepo);
-            //BookingService bookingService = new BookingService(bookingRepo);
-            //PaymentService paymentService = new PaymentService(paymentRepo);
-            //RoomService roomService = new RoomService(roomRepo);
-            //ReviewService reviewService = new ReviewService(reviewRepo);
-            //AvailableSlotService availableSlotService = new AvailableSlotService(availableSlotRepo);
-            //CompetitionService competitionService = new CompetitionService(competitionRepo);
-            //BookingTypeService bookingTypeService = new BookingTypeService(bookingTypeRepo);
-
-            //// Presentations
-            //VisitorPresentation visitorPresentation = new VisitorPresentation(visitorService);
-            //GamingDevicePresentation gamingDevicePresentation = new GamingDevicePresentation(gamingDeviceService);
-            //CategoryPresentation categoryPresentation = new CategoryPresentation(categoryService);
-            //BookingPresentation bookingPresentation = new BookingPresentation(bookingService);
-            //PaymentPresentation paymentPresentation = new PaymentPresentation(paymentService);
-            //RoomPresentation roomPresentation = new RoomPresentation(roomService);
-            //ReviewPresentation reviewPresentation = new ReviewPresentation(reviewService);
-            //AvailableSlotPresentation availableSlotPresentation = new AvailableSlotPresentation(availableSlotService);
-            //CompetitionPresentation competitionPresentation = new CompetitionPresentation(competitionService);
-            //BookingTypePresentation bookingTypePresentation = new BookingTypePresentation(bookingTypeService);
-
-
-
-
+            //services container ( place to register program services ) / dependency injection container
             var builder = WebApplication.CreateBuilder(args);
 
+            ////////////////////////////////////////////////////////////////////
+            
 
-            //Connection string
+            // Add services to the container
+
+            // 1- register context
+
             builder.Services.AddDbContext<GammingCenterContext>(options =>
-             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            ////////////////////////////////////////////////////////////////////
+            
 
 
 
+            // 2- service lifetime
+
+            builder.Services.AddScoped<VisitorRepository>();
+            builder.Services.AddScoped<RoomRepository>();
+            builder.Services.AddScoped<ReviewRepository>();
+            builder.Services.AddScoped<PaymentRepository>();
+            builder.Services.AddScoped<GamingDeviceRepository>();
+            builder.Services.AddScoped<CompetitionRepository>();
+            builder.Services.AddScoped<CategoryRepository>();
+            builder.Services.AddScoped<BookingRepository>();
+            builder.Services.AddScoped<BookingTypeRepository>();
+            builder.Services.AddScoped<AvailableSlotRepository>();
+
+            builder.Services.AddScoped<VisitorService>();
+            builder.Services.AddScoped<RoomService>();
+            builder.Services.AddScoped<ReviewService>();
+            builder.Services.AddScoped<PaymentService>();
+            builder.Services.AddScoped<GamingDeviceService>();
+            builder.Services.AddScoped<CompetitionService>();
+            builder.Services.AddScoped<CategoryRepository>();
+            builder.Services.AddScoped<BookingService>();
+            builder.Services.AddScoped<BookingTypeService>();
+            builder.Services.AddScoped<AvailableSlotService>();
+
+            ////////////////////////////////////////////////////////////////////
+            
 
 
 
-
-
-            // Add services to the container.
-
+            // ── Swagger with JWT
             builder.Services.AddControllers();
+
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            // *********************************************************************************
+
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
