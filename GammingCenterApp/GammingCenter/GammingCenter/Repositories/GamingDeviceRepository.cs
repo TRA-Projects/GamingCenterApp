@@ -1,6 +1,7 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace GammingCenter.Repositories
 {
@@ -85,4 +86,5 @@ namespace GammingCenter.Repositories
             }
         }
     }
+    { }
 }

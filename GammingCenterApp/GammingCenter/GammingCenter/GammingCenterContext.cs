@@ -1,13 +1,12 @@
 ﻿using GammingCenter.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Components;
+
 namespace GammingCenter
 {
     public class GammingCenterContext :DbContext
     {
-        public GammingCenterContext(DbContextOptions<GammingCenterContext> options)
-           : base(options)
-        {
-        }
+       
 
         public DbSet<Visitor> Visitors { get; set; }
         public DbSet<GamingDevice> GamingDevices { get; set; }
@@ -21,5 +20,9 @@ namespace GammingCenter
         public DbSet<BookingType> BookingTypes { get; set; }
 
 
-    }
+        public  GammingCenterContext(DbContextOptions<GammingCenterContext> options)
+          : base(options)
+        {
+        }
+}
 }
