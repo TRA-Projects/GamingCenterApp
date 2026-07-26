@@ -33,5 +33,16 @@ namespace GammingCenter.Repositories
         {
             context.SaveChanges();
         }
+
+        //========================================================
+        // View Visitor Bookings
+
+        // Get all bookings for a specific visitor
+        public List<Booking> GetByVisitorId(int visitorId)
+        {
+            return context.Bookings
+                .Where(b => b.VisitorId == visitorId)
+                .ToList();
+        }
     }
 }

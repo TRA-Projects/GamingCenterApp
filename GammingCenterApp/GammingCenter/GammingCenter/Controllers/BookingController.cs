@@ -90,5 +90,18 @@ namespace GammingCenter.Controllers
 
             return View(booking);
         }
+
+        //======================================================
+        // View Visitor Bookings
+
+        // Display all bookings for a visitor
+        [HttpGet]
+        public IActionResult VisitorBookings(int id)
+        {
+            List<Booking> bookings = bookingService.GetVisitorBookings(id);
+
+
+            return View(bookings);
+        }
     }
 }

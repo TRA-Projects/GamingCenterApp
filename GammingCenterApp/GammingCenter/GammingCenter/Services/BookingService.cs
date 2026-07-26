@@ -110,5 +110,18 @@ namespace GammingCenter.Services
             return booking;
         }
 
+        //========================================================
+        // View Visitor Bookings
+
+        // Business Logic for viewing visitor bookings
+        public List<Booking> GetVisitorBookings(int visitorId)
+        {
+            // Get visitor bookings from repository
+            List<Booking> bookings = bookingRepo.GetByVisitorId(visitorId);
+
+
+            // Return bookings list
+            return bookings;
+        }
     }
 }
