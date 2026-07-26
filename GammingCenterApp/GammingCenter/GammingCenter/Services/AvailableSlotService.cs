@@ -1,6 +1,7 @@
 ﻿using GammingCenter.DTOs.AvailableSlotDTO;
 using GammingCenter.Models;
 using GammingCenter.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GammingCenter.Services
 {
@@ -82,6 +83,12 @@ namespace GammingCenter.Services
         public List<AvailableSlot> SearchByDate(DateTime date)
         {
             return repo.SearchByDate(date);
+        }
+
+        // Filter Available Slots Only
+        public List<AvailableSlot> FilterAvailableSlots()
+        {
+            return repo.FilterAvailableSlots();
         }
 
     }

@@ -79,7 +79,12 @@ namespace GammingCenter.Controllers
 
         }
 
-
+        // Filter Available Slots Only
+        [HttpGet("FilterAvailableSlots")]
+        public IActionResult FilterAvailableSlots()
+        {
+            return Ok(availableSlotService.FilterAvailableSlots());
+        }
 
 
     }
