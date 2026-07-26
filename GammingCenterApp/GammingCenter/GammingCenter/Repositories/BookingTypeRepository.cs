@@ -43,7 +43,7 @@ namespace GammingCenter.Repositories
 
         /////////////////////////////////////////////////////////
 
-        // 4-Search Booking Type By ID
+        // Note: -Search Booking Type By ID
 
         // this method Used internally for Update and Delete in service to proccessing 
 
@@ -53,6 +53,13 @@ namespace GammingCenter.Repositories
         }
 
 
+        /////////////////////////////////////////////////////////
 
+        // 4- View Booking Types
+
+        public List<BookingType> GetBookingTypes()
+        {
+            return Context.BookingTypes.ToList();
+        }
     }
 }
