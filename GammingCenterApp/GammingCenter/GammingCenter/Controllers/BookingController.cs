@@ -1,4 +1,5 @@
 ﻿using GammingCenter.DTOs.BookingDTO;
+using GammingCenter.Models;
 using GammingCenter.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -68,6 +69,26 @@ namespace GammingCenter.Controllers
 
             return RedirectToAction("Index");
 
+        }
+
+        //======================================================
+        // View Booking Details
+
+        // Display booking details
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            Booking booking = bookingService.GetBookingDetails(id);
+
+
+            // Check if booking exists
+            if (booking == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(booking);
         }
     }
 }
