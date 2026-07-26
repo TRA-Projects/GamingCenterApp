@@ -37,6 +37,28 @@ namespace GammingCenter.Services
         
 
         // 2-Update Device Method
+        public bool UpdateGamingDevice(int deviceId, GamingDeviceUpdateDto dto)
+        {
 
+            var exisitngdevice = _repository.SearchGamingDevice(deviceId);
+            
+                //check input
+                if(exisitngdevice == null)
+                {
+                    return false;
+                }
+
+                exisitngdevice.DeviceName = dto.DeviceName;
+                exisitngdevice.DeviceCode = dto.DeviceCode;
+                exisitngdevice.HourlyPrice = dto.HourlyPrice;
+                exisitngdevice.CategoryId = dto.CategoryId;
+                exisitngdevice.RoomId = dto.RoomId;
+
+                _repository.UpdateGamingDevice(exisitngdevice);
+
+            return true;
+
+            }
+        }
     }
-}
+
