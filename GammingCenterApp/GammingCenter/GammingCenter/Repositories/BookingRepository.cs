@@ -4,6 +4,7 @@ namespace GammingCenter.Repositories
 {
     public class BookingRepository
     {
+        //Add booking
         // Database context used to access the database
         private GammingCenterContext context;
 
