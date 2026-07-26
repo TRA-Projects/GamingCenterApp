@@ -12,7 +12,7 @@ namespace GammingCenter.Controllers
         private readonly GamingDeviceService _service;
 
         //constrator
-        public  GamingDeviceController(GamingDeviceService service)
+        public GamingDeviceController(GamingDeviceService service)
         {
             _service = service;
         }
@@ -33,9 +33,11 @@ namespace GammingCenter.Controllers
         ////////////////////////////////////////////////////////
 
         // 2. Update Gaming Device 
+
+        [HttpPut("{deviceId}")] //tag
         public IActionResult UpdateGamingDevice(int deviceId , GamingDeviceUpdateDto dto)
         {
-            var result = _service.UpdateGamingDevice(deviceId, dto);
+            bool result = _service.UpdateGamingDevice(deviceId, dto);
 
             // Check if the gaming device exists
             if (!result)
@@ -44,8 +46,58 @@ namespace GammingCenter.Controllers
 
             }
 
+            return Ok("Gaming device Updated successfully");
+        }
+
+        ////////////////////////////////////////////////////////
+
+        // 3-Delete Device Method
+
+        [HttpDelete("{deviceId}")]
+        public IActionResult DeleteGamingDevice(int deviceId)
+        {
+            bool result = _service.DeleteGamingDevice(deviceId);
+
+            //validate input
+            if (!result)
+            {
+                return NotFound("Gaming device not found");
+            }
+
             return Ok("Gaming device deleted successfully");
         }
+
+        ////////////////////////////////////////////////////////
+
+        // 4-Search Device Method
+
+        [HttpGet("{deviceId}")]
+       public IActionResult SearchGamingDevice(int deviceId)
+        {
+            GamingDevice device = _service.SearchGamingDevice(deviceId);
+
+            //validate input
+            if (device == null)
+            {
+                return NotFound("Gaming device not found");
+            }
+
+            return Ok(device);
+        }
+
+        ////////////////////////////////////////////////////////
+
+        // 5-View Available Device Method
+
+        public IActionResult GetAvailableDevice()
+        {
+            // The service returns a list of GamingDevice objects
+            List<GamingDevice> devices = _service.GetAvailableDevices();
+
+            return Ok(devices);
+        }
+
+
 
     }
 
