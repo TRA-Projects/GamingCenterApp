@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\GamingDeviceDto\" />
     <Folder Include="DTOs\BookingDto\" />
     <Folder Include="DTOs\BookingTypeDto\" />
     <Folder Include="DTOs\CategoryDto\" />
