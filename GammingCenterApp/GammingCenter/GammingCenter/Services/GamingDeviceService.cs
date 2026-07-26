@@ -59,6 +59,26 @@ namespace GammingCenter.Services
             return true;
 
             }
+
+        ////////////////////////////////////////////////////////////
+
+
+        // 3-Delete Device Method
+        public bool DeleteGamingDevice(int deviceId)
+        {
+            var device = _repository.SearchGamingDevice(deviceId);
+
+            //check input
+            if(device == null)
+            {
+                return false;
+            }
+
+            _repository.DeleteGamingDevice(device);
+
+            return true;
         }
+
     }
+}
 
