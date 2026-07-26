@@ -64,5 +64,30 @@ namespace GammingCenter.Services
             bookingRepo.Update();
         }
 
+        //========================================================
+        // Cancel Booking
+
+        // Business Logic for cancelling a booking
+        public void CancelBooking(int bookingId)
+        {
+            // Retrieve booking from database
+            Booking booking = bookingRepo.GetById(bookingId);
+
+
+            // Check if booking exists
+            if (booking == null)
+            {
+                return;
+            }
+
+
+            // Change booking status instead of deleting it
+            booking.Status = "Cancelled";
+
+
+            // Save changes
+            bookingRepo.Update();
+        }
+
     }
 }

@@ -56,6 +56,20 @@ namespace GammingCenter.Controllers
             }
 
             return View(dto);
+
+        }
+        //======================================================
+        // Cancel Booking
+
+
+        // Cancel booking
+        [HttpPost]
+        public IActionResult Cancel(int id)
+        {
+            bookingService.CancelBooking(id);
+
+            return RedirectToAction("Index");
+
         }
     }
 }
