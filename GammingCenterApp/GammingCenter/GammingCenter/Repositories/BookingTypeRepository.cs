@@ -25,7 +25,14 @@ namespace GammingCenter.Repositories
 
         /////////////////////////////////////////////////////////
 
-        //1- Booking Type
+        //2- Update Booking Type
+        public void UpdateBookingType(BookingType bookingType)
+        {
+            Context.BookingTypes.Update(bookingType);
+            Context.SaveChanges();
+        }
+
+
 
     }
 }
