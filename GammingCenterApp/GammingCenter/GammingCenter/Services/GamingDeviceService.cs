@@ -12,6 +12,10 @@ namespace GammingCenter.Services
             _repository = repository;
         }
 
+        ////////////////////////////////////////////////////////////
 
+
+        // 1-Add Device Method
+        //public void AddGamingDevice(g)
     }
 }

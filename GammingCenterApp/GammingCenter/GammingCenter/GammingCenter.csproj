@@ -21,4 +21,17 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\GamingDeviceDto\" />
+    <Folder Include="DTOs\BookingDto\" />
+    <Folder Include="DTOs\BookingTypeDto\" />
+    <Folder Include="DTOs\CategoryDto\" />
+    <Folder Include="DTOs\CompetitionDto\" />
+    <Folder Include="DTOs\AvailableSlotDto\" />
+    <Folder Include="DTOs\VisitorDto\" />
+    <Folder Include="DTOs\RoomDto\" />
+    <Folder Include="DTOs\PaymentDto\" />
+    <Folder Include="DTOs\ReviewDto\" />
+  </ItemGroup>
+
 </Project>
