@@ -23,5 +23,9 @@ namespace GammingCenter.Repositories
         }
 
 
+        /////////////////////////////////////////////////////////
+
+        //1- Booking Type
+
     }
 }
