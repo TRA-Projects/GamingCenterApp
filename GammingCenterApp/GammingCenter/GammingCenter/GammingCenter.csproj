@@ -37,7 +37,6 @@
     <Folder Include="DTOs\VisitorDTO\" />
     <Folder Include="DTOs\RoomDTO\" />
     <Folder Include="DTOs\ReviewDTO\" />
-    <Folder Include="DTOs\PaymentDTO\" />
   </ItemGroup>
 
 </Project>
