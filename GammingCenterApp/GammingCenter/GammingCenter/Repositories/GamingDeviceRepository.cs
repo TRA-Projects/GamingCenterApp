@@ -86,5 +86,5 @@ namespace GammingCenter.Repositories
             }
         }
     }
-    { }
+  
 }

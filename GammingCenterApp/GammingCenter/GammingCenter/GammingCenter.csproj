@@ -22,15 +22,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\BookingDto\" />
-    <Folder Include="DTOs\BookingTypeDto\" />
-    <Folder Include="DTOs\CategoryDto\" />
-    <Folder Include="DTOs\CompetitionDto\" />
-    <Folder Include="DTOs\AvailableSlotDto\" />
-    <Folder Include="DTOs\VisitorDto\" />
-    <Folder Include="DTOs\RoomDto\" />
-    <Folder Include="DTOs\PaymentDto\" />
-    <Folder Include="DTOs\ReviewDto\" />
+    <Folder Include="DTOs\AvailableSlotDTO\" />
+    <Folder Include="DTOs\BookingDTO\" />
+    <Folder Include="DTOs\BookingTypeDTO\" />
+    <Folder Include="DTOs\CategoryDTO\" />
+    <Folder Include="DTOs\CompetitionDTO\" />
+    <Folder Include="DTOs\GamingDeviceDTO\" />
+    <Folder Include="DTOs\VisitorDTO\" />
+    <Folder Include="DTOs\RoomDTO\" />
+    <Folder Include="DTOs\ReviewDTO\" />
+    <Folder Include="DTOs\PaymentDTO\" />
   </ItemGroup>
 
 </Project>
