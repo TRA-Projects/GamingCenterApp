@@ -1,4 +1,5 @@
-﻿using GammingCenter.Repositories;
+﻿using GammingCenter.DTOs.GamingDevice;
+using GammingCenter.Repositories;
 
 namespace GammingCenter.Services
 {
@@ -16,6 +17,21 @@ namespace GammingCenter.Services
 
 
         // 1-Add Device Method
-        //public void AddGamingDevice(g)
+        public void AddGamingDevice(GamingDeviceCreateDto dto)
+        {
+            var device = new GamingDevice
+            {
+                DeviceName = dto.DeviceName,
+                DeviceCode=dto.DeviceCode,
+                HourlyPrice=dto.HourlyPrice,
+                Status=dto.Status,
+                CategoryId=dto.CategoryId,
+                RoomId=dto.RoomId
+
+            };
+
+            _repository.AddGamingDevice(device);
+
+        }
     }
 }
