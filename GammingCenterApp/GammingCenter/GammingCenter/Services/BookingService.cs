@@ -123,5 +123,29 @@ namespace GammingCenter.Services
             // Return bookings list
             return bookings;
         }
+
+        //========================================================
+        // Calculate Total Price
+
+        // Business Logic for calculating booking price
+        public decimal CalculateTotalPrice(int gamingDeviceId, int hours)
+        {
+            // Get device information
+            GamingDevice device = bookingRepo.GetGamingDeviceById(gamingDeviceId);
+
+
+            // Check if device exists
+            if (device == null)
+            {
+                return 0;
+            }
+
+
+            // Calculate total price
+            decimal totalPrice = device.HourlyPrice * hours;
+
+
+            return totalPrice;
+        }
     }
 }

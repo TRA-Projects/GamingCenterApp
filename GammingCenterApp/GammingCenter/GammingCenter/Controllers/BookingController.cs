@@ -103,5 +103,17 @@ namespace GammingCenter.Controllers
 
             return View(bookings);
         }
+        //======================================================
+        // Calculate Total Price
+
+        // Calculate booking total price
+        [HttpGet]
+        public IActionResult CalculatePrice(int deviceId, int hours)
+        {
+            decimal totalPrice = bookingService.CalculateTotalPrice(deviceId, hours);
+
+
+            return Json(totalPrice);
+        }
     }
 }
