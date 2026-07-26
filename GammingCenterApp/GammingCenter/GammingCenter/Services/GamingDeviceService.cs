@@ -33,5 +33,10 @@ namespace GammingCenter.Services
             _repository.AddGamingDevice(device);
 
         }
+        ////////////////////////////////////////////////////////////
+        
+
+        // 2-Update Device Method
+
     }
 }
