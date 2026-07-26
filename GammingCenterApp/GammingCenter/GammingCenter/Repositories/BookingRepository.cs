@@ -44,5 +44,15 @@ namespace GammingCenter.Repositories
                 .Where(b => b.VisitorId == visitorId)
                 .ToList();
         }
+
+        //========================================================
+        // Calculate Total Price
+
+        // Get gaming device by ID
+        public GamingDevice GetGamingDeviceById(int deviceId)
+        {
+            return context.GamingDevices
+                .FirstOrDefault(d => d.DeviceID == deviceId);
+        }
     }
 }
