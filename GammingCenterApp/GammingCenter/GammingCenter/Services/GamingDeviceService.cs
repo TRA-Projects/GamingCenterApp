@@ -80,7 +80,15 @@ namespace GammingCenter.Services
         }
 
 
-        
+        ////////////////////////////////////////////////////////////
+
+
+        // 4-Search Device Method
+        public GamingDevice SearchGamingDevice(int deviceId)
+        {
+            return _repository.SearchGamingDevice(deviceId);
+        }
+
 
 
     }
