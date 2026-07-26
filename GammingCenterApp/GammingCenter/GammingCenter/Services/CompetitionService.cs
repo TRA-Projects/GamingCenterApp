@@ -54,8 +54,20 @@ namespace GammingCenter.Services
 
             return true;
         }
+        // ==== Cancel Competition====
+        public bool CancelCompetition(int id)
+        {
+            Competition competition = repo.GetCompetitionById(id);
 
+            if (competition == null)
+                return false;
 
+            competition.CompetitionStatus = "Cancelled";
+
+            repo.CancelCompetition();
+
+            return true;
+        }
 
 
     }

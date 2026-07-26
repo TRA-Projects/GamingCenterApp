@@ -41,11 +41,18 @@ namespace GammingCenter.Controllers
             if (!updated)
                 return NotFound();
 
-            return NoContent();
+            return Ok("Successfuly Updated");
         }
 
+        // ==== Cancel Competition====
+        public IActionResult CancelCompetition(int id)
+        {
+            bool cnacelled = competitionService.CancelCompetition(id);
+            if (!cnacelled)
+                return NotFound();
 
-
+            return Ok("Successfuly Deleted");
+        }
 
 
     }
