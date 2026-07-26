@@ -36,5 +36,26 @@ namespace GammingCenter.Controllers
 
             return View(dto);
         }
+        //======================================================
+        // Display Update Booking page
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // Update booking
+        [HttpPost]
+        public IActionResult Edit(int id, BookingDTO dto)
+        {
+            if (ModelState.IsValid)
+            {
+                bookingService.UpdateBooking(id, dto);
+
+                return RedirectToAction("Index");
+            }
+
+            return View(dto);
+        }
     }
 }
