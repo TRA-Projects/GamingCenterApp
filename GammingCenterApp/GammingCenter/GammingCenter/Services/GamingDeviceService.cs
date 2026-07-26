@@ -99,6 +99,35 @@ namespace GammingCenter.Services
             return _repository.GetAvailableDevice();
         }
 
+        ////////////////////////////////////////////////////////////
+
+
+        // 6-change Device Status Method
+        public bool changeDeviceStatus(int deviceId, ChangeDeviceStatusDto dto)
+        {
+            //validate allowed status
+            if (dto.Status != "Available" &&
+               dto.Status != "Occupied" &&
+               dto.Status != "Maintenance")
+            {
+                return false;
+            }
+
+            //check if device exist
+            var device = _repository.SearchGamingDevice(deviceId);
+
+            if (device == null)
+            {
+                return false;
+            }
+
+            //change device status
+            _repository.changeDeviceStatus(deviceId, dto.Status);
+
+            return true;
+        }
+
+
     }
 }
 
