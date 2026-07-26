@@ -12,8 +12,13 @@ namespace GammingCenter.Repositories
             context = _context;
         }
 
+        public Competition GetCompetitionById(int id)
+        {
+            return context.Competitions
+                .FirstOrDefault(c => c.CompetitionId == id);
+        }
 
-        // Add
+        // ==== Create Competition =====
         public void CreateCompetition(Competition competition)
         {
 
@@ -22,6 +27,13 @@ namespace GammingCenter.Repositories
             context.SaveChanges();
 
         }
+
+        // ==== Update Competition ====
+        public void UpdateCompetition()
+        {
+            context.SaveChanges();
+        }
+
 
 
     }
