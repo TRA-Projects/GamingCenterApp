@@ -58,6 +58,13 @@ namespace GammingCenter.Repositories
                 .ToList();
         }
 
+        // Get Only Available Slots
+        public List<AvailableSlot> FilterAvailableSlots()
+        {
+            return context.AvailableSlots
+                .Where(s => s.IsAvailable == true)
+                .ToList();
+        }
 
     }
 }
