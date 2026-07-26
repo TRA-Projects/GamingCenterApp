@@ -15,6 +15,23 @@ namespace GammingCenter.Services
         {
             repo = _repo;
         }
+        // ==== Get All Competition ====
+        public List<CompetitionOutputDTO> GetAllCompetition()
+        {
+            return repo.GetAllCompetition()
+                       .Select(c => new CompetitionOutputDTO
+                       {
+                           CompetitionName=c.CompetitionName,
+                           StartDate = c.StartDate,
+                           EndDate = c.EndDate,
+                           PlayersNo = c.PlayersNo,
+                           CompetitionStatus = c.CompetitionStatus,
+                           DevicesName = c.DevicesName,
+                           RoomId = c.RoomId,
+                       })
+                       .ToList();
+        }
+
 
         // ==== Create Competition =====
         public int CreateCompetition(CompetitionInputDTO dto)
