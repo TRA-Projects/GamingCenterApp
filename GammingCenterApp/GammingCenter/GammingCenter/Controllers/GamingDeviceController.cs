@@ -89,12 +89,31 @@ namespace GammingCenter.Controllers
 
         // 5-View Available Device Method
 
+        [HttpGet("Available")]
         public IActionResult GetAvailableDevice()
         {
             // The service returns a list of GamingDevice objects
             List<GamingDevice> devices = _service.GetAvailableDevices();
 
             return Ok(devices);
+        }
+
+
+        ////////////////////////////////////////////////////////
+
+        // 5-change Status Device Method
+        [HttpPut("{deviceId}/status")]
+        public IActionResult changeDeviceStatus(int deviceId, ChangeDeviceStatusDto dto)
+        {
+            bool result = _service.changeDeviceStatus(deviceId, dto);
+
+            //validate input
+            if (!result)
+            {
+                return BadRequest("Invalid status or gaming device not found");
+            }
+
+            return Ok("Gaming device status changed successfully");
         }
 
 
