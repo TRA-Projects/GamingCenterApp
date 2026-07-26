@@ -90,6 +90,14 @@ namespace GammingCenter.Services
         }
 
 
+        ////////////////////////////////////////////////////////////
+
+
+        // 5-View Available Device Method
+        public List<GamingDevice> GetAvailableDevices()
+        {
+            return _repository.GetAvailableDevice();
+        }
 
     }
 }
