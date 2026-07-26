@@ -19,6 +19,20 @@ namespace GammingCenter.Controllers
         {
             competitionService = _competitionService;
         }
+        // ==== Get All Competition ====
+        [AllowAnonymous]
+        [HttpGet("GetAllCompetition")]
+        public IActionResult GetAllProducts()
+        {
+            List<CompetitionOutputDTO> result = competitionService.GetAllCompetition();
+
+            if (result.Count > 0)
+            {
+                return Ok(result);
+            }
+
+            return NoContent(); //204 no data
+        }
 
         // ==== Create Competition ====
         [Authorize(Roles = "Admin")]

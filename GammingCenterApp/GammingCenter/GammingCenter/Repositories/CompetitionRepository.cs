@@ -11,6 +11,12 @@ namespace GammingCenter.Repositories
         {
             context = _context;
         }
+        // ==== Get All Competition ====
+        public List<Competition> GetAllCompetition()
+        {
+            return context.Competitions.ToList();
+        }
+
 
         public Competition GetCompetitionById(int id)
         {
