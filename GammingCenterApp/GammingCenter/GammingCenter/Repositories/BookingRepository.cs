@@ -54,5 +54,21 @@ namespace GammingCenter.Repositories
             return context.GamingDevices
                 .FirstOrDefault(d => d.DeviceID == deviceId);
         }
+
+        //========================================================
+        // Check Device Availability
+
+        // Check if a gaming device is available
+        public bool IsDeviceAvailable(int deviceId, int slotId)
+        {
+            bool isBooked = context.Bookings
+                .Any(b => b.GamingDeviceId == deviceId
+                       && b.AvailableSlotId == slotId
+                       && b.Status != "Cancelled");
+
+
+            // Return true if no active booking exists
+            return !isBooked;
+        }
     }
 }

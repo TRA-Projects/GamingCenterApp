@@ -147,5 +147,17 @@ namespace GammingCenter.Services
 
             return totalPrice;
         }
+        //========================================================
+        // Check Device Availability
+
+        // Business Logic for checking device availability
+        public bool CheckDeviceAvailability(int deviceId, int slotId)
+        {
+            // Ask repository to check availability
+            bool available = bookingRepo.IsDeviceAvailable(deviceId, slotId);
+
+
+            return available;
+        }
     }
 }

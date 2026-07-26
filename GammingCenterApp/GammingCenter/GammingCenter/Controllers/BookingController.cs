@@ -115,5 +115,17 @@ namespace GammingCenter.Controllers
 
             return Json(totalPrice);
         }
+        //======================================================
+        // Check Device Availability
+
+        // Check if device is available
+        [HttpGet]
+        public IActionResult CheckAvailability(int deviceId, int slotId)
+        {
+            bool available = bookingService.CheckDeviceAvailability(deviceId, slotId);
+
+
+            return Json(available);
+        }
     }
 }
