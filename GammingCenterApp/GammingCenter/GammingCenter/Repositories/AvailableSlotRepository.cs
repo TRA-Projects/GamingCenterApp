@@ -17,7 +17,7 @@ namespace GammingCenter.Repositories
             return context.AvailableSlots.ToList();
         }
 
-        public AvailableSlot GetProductById(int id)
+        public AvailableSlot GetSlotById(int id)
         {
             return context.AvailableSlots.FirstOrDefault(p => p.SlotId == id);
         }
@@ -45,6 +45,10 @@ namespace GammingCenter.Repositories
             context.SaveChanges();
         }
 
-
+        // Update Slot
+        public void Update()
+        {
+            context.SaveChanges();
+        }
     }
 }

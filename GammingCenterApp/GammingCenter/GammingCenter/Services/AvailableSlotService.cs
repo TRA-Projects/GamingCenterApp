@@ -32,7 +32,7 @@ namespace GammingCenter.Services
         // Update Slot
         public bool UpdateSlot(int SlotId, DateTime newSlotDate, int newDuration)
         {
-            AvailableSlot availableSlot = repo.GetProductById(SlotId);
+            AvailableSlot availableSlot = repo.GetSlotById(SlotId);
             if (availableSlot == null)
             {
                 return false;
@@ -46,7 +46,7 @@ namespace GammingCenter.Services
         // Delete Slot
         public bool DeleteSlot(int SlotId)
         {
-            AvailableSlot availableSlot = repo.GetProductById(SlotId);
+            AvailableSlot availableSlot = repo.GetSlotById(SlotId);
             if (availableSlot == null)
             {
                 return false;
@@ -56,7 +56,27 @@ namespace GammingCenter.Services
             return true;
         }
 
+        // Update Slot Status
+        public bool UpdateStatus(int slotId, bool status)
+        {
 
+            AvailableSlot slot = repo.GetSlotById(slotId);
+
+
+            if (slot == null)
+            {
+                return false;
+            }
+
+
+            slot.IsAvailable = status;
+
+
+            repo.Update();
+
+
+            return true;
+        }
 
     }
 

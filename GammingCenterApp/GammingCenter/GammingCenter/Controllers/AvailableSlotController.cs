@@ -53,7 +53,23 @@ namespace GammingCenter.Controllers
             //return NoContent();
         }
 
-        ///
+        // Update Slot Status Available / Unavailable
+        [Authorize(Roles = "Admin")]
+        [HttpPut("UpdateStatus")]
+        public IActionResult UpdateStatus(int slotId, bool status)
+        {
+
+            bool updated = availableSlotService.UpdateStatus(slotId, status);
+
+
+            if (!updated)
+                return NotFound();
+
+
+            return NoContent();
+
+        }
+
 
 
 
