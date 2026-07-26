@@ -19,7 +19,7 @@ namespace GammingCenter.Controllers
         }
 
 
-        // Add Slot
+        // ====== Add Slot ======
         [Authorize(Roles = "Admin")]
         [HttpPost("Add")]
         public IActionResult Add([FromBody] AvailableSlotDTOs slot)
@@ -28,7 +28,7 @@ namespace GammingCenter.Controllers
 
             return Ok(new { SlotId = slotId });
         }
-        // Update Slot
+        // ====== Update Slot ======
         [Authorize(Roles = "Admin")]
         [HttpPost("UpdateSlots/{SlotId}")]
         public IActionResult UpdateSlot([FromRoute] int SlotId, [FromQuery] DateTime newSlotDate, [FromQuery] int newDuration)
@@ -39,7 +39,7 @@ namespace GammingCenter.Controllers
 
             return Ok("Updated successfully");
         }
-        // Delete Slot
+        // ====== Delete Slot ======
         [Authorize(Roles = "Admin")]
         [HttpDelete("Delete/{SlotId}")]
         public IActionResult DeleteSlot([FromRoute] int SlotId)
@@ -53,7 +53,7 @@ namespace GammingCenter.Controllers
             //return NoContent();
         }
 
-        // Update Slot Status Available / Unavailable
+        // ====== Update Slot Status Available / Unavailable====== 
         [Authorize(Roles = "Admin")]
         [HttpPut("UpdateStatus")]
         public IActionResult UpdateStatus(int slotId, bool status)
@@ -70,7 +70,7 @@ namespace GammingCenter.Controllers
 
         }
 
-        // Search Slot By Date
+        // ====== Search Slot By Date ======
         [HttpGet("SearchByDate")]
         public IActionResult SearchByDate(DateTime date)
         {
@@ -79,11 +79,11 @@ namespace GammingCenter.Controllers
 
         }
 
-        // Filter Available Slots Only
-        [HttpGet("FilterAvailableSlots")]
-        public IActionResult FilterAvailableSlots()
+        // ====== View Available Slots Only====== 
+        [HttpGet("ViewAvailableSlots")]
+        public IActionResult ViewAvailableSlots()
         {
-            return Ok(availableSlotService.FilterAvailableSlots());
+            return Ok(availableSlotService.ViewrAvailableSlots());
         }
 
 
