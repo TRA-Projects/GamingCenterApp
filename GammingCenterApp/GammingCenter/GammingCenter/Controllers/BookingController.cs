@@ -61,8 +61,6 @@ namespace GammingCenter.Controllers
         //======================================================
         // Cancel Booking
 
-
-        // Cancel booking
         [HttpPost]
         public IActionResult Cancel(int id)
         {
