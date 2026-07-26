@@ -78,6 +78,12 @@ namespace GammingCenter.Services
             return true;
         }
 
+        // Search Slot By Date
+        public List<AvailableSlot> SearchByDate(DateTime date)
+        {
+            return repo.SearchByDate(date);
+        }
+
     }
 
     }

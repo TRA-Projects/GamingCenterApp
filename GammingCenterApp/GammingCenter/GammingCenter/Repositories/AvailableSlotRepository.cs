@@ -50,5 +50,14 @@ namespace GammingCenter.Repositories
         {
             context.SaveChanges();
         }
+        // Search By Date
+        public List<AvailableSlot> SearchByDate(DateTime date)
+        {
+            return context.AvailableSlots
+                .Where(s => s.SlotDate.Date == date.Date)
+                .ToList();
+        }
+
+
     }
 }

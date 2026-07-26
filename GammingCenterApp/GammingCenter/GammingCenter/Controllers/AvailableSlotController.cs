@@ -70,7 +70,14 @@ namespace GammingCenter.Controllers
 
         }
 
+        // Search Slot By Date
+        [HttpGet("SearchByDate")]
+        public IActionResult SearchByDate(DateTime date)
+        {
 
+            return Ok(availableSlotService.SearchByDate(date));
+
+        }
 
 
 
