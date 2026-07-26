@@ -14,7 +14,7 @@ namespace GammingCenter.Services
         {
             repo = _repo;
         }
-        // Add Slot
+        // ====== Add Slot ======
         public int AddSlot(AvailableSlotDTOs dto)
         {
             AvailableSlot slot = new AvailableSlot();
@@ -30,7 +30,7 @@ namespace GammingCenter.Services
             return slot.SlotId;
         }
 
-        // Update Slot
+        // ====== Update Slot ======
         public bool UpdateSlot(int SlotId, DateTime newSlotDate, int newDuration)
         {
             AvailableSlot availableSlot = repo.GetSlotById(SlotId);
@@ -44,7 +44,7 @@ namespace GammingCenter.Services
             return true;
         }
 
-        // Delete Slot
+        // ====== Delete Slot ======
         public bool DeleteSlot(int SlotId)
         {
             AvailableSlot availableSlot = repo.GetSlotById(SlotId);
@@ -57,7 +57,7 @@ namespace GammingCenter.Services
             return true;
         }
 
-        // Update Slot Status
+        // ====== Update Slot Status ======
         public bool UpdateStatus(int slotId, bool status)
         {
 
@@ -79,16 +79,16 @@ namespace GammingCenter.Services
             return true;
         }
 
-        // Search Slot By Date
+        // ====== Search Slot By Date ======
         public List<AvailableSlot> SearchByDate(DateTime date)
         {
             return repo.SearchByDate(date);
         }
 
-        // Filter Available Slots Only
-        public List<AvailableSlot> FilterAvailableSlots()
+        // ====== Filter Available Slots Only ======
+        public List<AvailableSlot> ViewrAvailableSlots()
         {
-            return repo.FilterAvailableSlots();
+            return repo.ViewAvailableSlots();
         }
 
     }

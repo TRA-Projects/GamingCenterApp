@@ -24,7 +24,7 @@ namespace GammingCenter.Repositories
 
 
 
-        // Add Slot
+        // ====== Add Slot ======
         public void AddSlot(AvailableSlot slot)
         {
             context.AvailableSlots.Add(slot);
@@ -32,25 +32,25 @@ namespace GammingCenter.Repositories
             context.SaveChanges();
         }
 
-        // Update Slot
+        // ====== Update Slot ======
         public void UpdateSlot()
         {
             context.SaveChanges();
         }
 
-        // Delete Slot
+        // ====== Delete Slot ======
         public void DeleteSlot(AvailableSlot availableSlot)
         {
             context.AvailableSlots.Remove(availableSlot);
             context.SaveChanges();
         }
 
-        // Update Slot
+        // ====== Update Slot ======
         public void Update()
         {
             context.SaveChanges();
         }
-        // Search By Date
+        // ====== Search By Date ======
         public List<AvailableSlot> SearchByDate(DateTime date)
         {
             return context.AvailableSlots
@@ -58,8 +58,8 @@ namespace GammingCenter.Repositories
                 .ToList();
         }
 
-        // Get Only Available Slots
-        public List<AvailableSlot> FilterAvailableSlots()
+        // ====== Get Only Available Slots ======
+        public List<AvailableSlot> ViewAvailableSlots()
         {
             return context.AvailableSlots
                 .Where(s => s.IsAvailable == true)
