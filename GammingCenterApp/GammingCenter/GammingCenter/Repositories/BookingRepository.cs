@@ -20,5 +20,18 @@ namespace GammingCenter.Repositories
             context.Bookings.Add(booking);
             context.SaveChanges();
         }
+
+        //update booking
+        // Find a booking by its ID
+        public Booking GetById(int bookingId)
+        {
+            return context.Bookings.FirstOrDefault(b => b.BookingId == bookingId);
+        }
+
+        // Save any changes made to the database
+        public void Update()
+        {
+            context.SaveChanges();
+        }
     }
 }

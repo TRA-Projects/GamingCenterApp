@@ -38,6 +38,31 @@ namespace GammingCenter.Services
             bookingRepo.AddBooking(booking);
         }
         //========================================================
+        //update booking
+
+        // Business Logic for updating a booking
+        public void UpdateBooking(int bookingId, BookingDTO dto)
+        {
+            // Retrieve booking from database
+            Booking booking = bookingRepo.GetById(bookingId);
+
+            // Check if booking exists
+            if (booking == null)
+            {
+                return;
+            }
+
+            // Update booking information
+            booking.VisitorId = dto.VisitorId;
+            booking.GamingDeviceId = dto.GamingDeviceId;
+            booking.BookingTypeId = dto.BookingTypeId;
+            booking.AvailableSlotId = dto.AvailableSlotId;
+            booking.PlayerNumber = dto.PlayerNumber;
+            booking.TotalPrice = dto.TotalPrice;
+
+            // Save changes
+            bookingRepo.Update();
+        }
 
     }
 }
