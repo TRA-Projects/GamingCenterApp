@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="DTOs\BookingDTOs\**" />
+    <Compile Remove="DTOs\PaymentDTO\**" />
     <Content Remove="DTOs\BookingDTOs\**" />
+    <Content Remove="DTOs\PaymentDTO\**" />
     <EmbeddedResource Remove="DTOs\BookingDTOs\**" />
+    <EmbeddedResource Remove="DTOs\PaymentDTO\**" />
     <None Remove="DTOs\BookingDTOs\**" />
+    <None Remove="DTOs\PaymentDTO\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,7 +41,6 @@
     <Folder Include="DTOs\VisitorDTO\" />
     <Folder Include="DTOs\RoomDTO\" />
     <Folder Include="DTOs\ReviewDTO\" />
-    <Folder Include="DTOs\PaymentDTO\" />
   </ItemGroup>
 
 </Project>
