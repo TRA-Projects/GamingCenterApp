@@ -1,4 +1,5 @@
-﻿using GammingCenter.Models;
+﻿using GammingCenter.DTOs.AvailableSlotDTO;
+using GammingCenter.Models;
 using GammingCenter.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,15 +18,17 @@ namespace GammingCenter.Controllers
             availableSlotService = _availableSlotService;
         }
 
+
+        // Add Slot
+        [Authorize(Roles = "Admin")]
         [HttpPost("Add")]
-        public IActionResult AddSlot(AvailableSlot availableSlot)
+        public IActionResult Add([FromBody] AvailableSlotDTOs slot)
         {
-            int SlotId = availableSlotService.CreateSlots(availableSlot);
+            int slotId = availableSlotService.AddSlot(slot);
 
-            return Ok(new { SlotId = SlotId });
-
+            return Ok(new { SlotId = slotId });
         }
-
+        // Update Slot
         [Authorize(Roles = "Admin")]
         [HttpPost("UpdateSlots/{SlotId}")]
         public IActionResult UpdateSlot([FromRoute] int SlotId, [FromQuery] DateTime newSlotDate, [FromQuery] int newDuration)
@@ -36,7 +39,7 @@ namespace GammingCenter.Controllers
 
             return Ok("Updated successfully");
         }
-
+        // Delete Slot
         [Authorize(Roles = "Admin")]
         [HttpDelete("Delete/{SlotId}")]
         public IActionResult DeleteSlot([FromRoute] int SlotId)

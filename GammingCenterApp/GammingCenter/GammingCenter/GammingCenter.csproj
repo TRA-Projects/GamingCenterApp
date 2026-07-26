@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\BookingDTO\" />
     <Folder Include="DTOs\AvailableSlotDTO\" />
     <Folder Include="DTOs\BookingTypeDTO\" />
     <Folder Include="DTOs\CategoryDTO\" />
