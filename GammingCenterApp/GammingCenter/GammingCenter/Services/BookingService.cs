@@ -89,5 +89,26 @@ namespace GammingCenter.Services
             bookingRepo.Update();
         }
 
+        //========================================================
+        // View Booking Details
+
+        // Business Logic for viewing booking details
+        public Booking GetBookingDetails(int bookingId)
+        {
+            // Get booking from database
+            Booking booking = bookingRepo.GetById(bookingId);
+
+
+            // Check if booking exists
+            if (booking == null)
+            {
+                return null;
+            }
+
+
+            // Return booking details
+            return booking;
+        }
+
     }
 }
