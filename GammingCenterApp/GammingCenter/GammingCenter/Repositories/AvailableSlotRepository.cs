@@ -24,10 +24,25 @@ namespace GammingCenter.Repositories
 
 
 
-        public void AddSlots (AvailableSlot availableSlot)
+        public void AddSlots(AvailableSlot availableSlot)
         {
             context.AvailableSlots.Add(availableSlot);
             context.SaveChanges();
         }
+
+
+        public void UpdateSlot()
+        {
+            context.SaveChanges();
+        }
+
+
+        public void DeleteSlot(AvailableSlot availableSlot)
+        {
+            context.AvailableSlots.Remove(availableSlot);
+            context.SaveChanges();
+        }
+
+
     }
 }
