@@ -34,7 +34,11 @@ namespace GammingCenter.Repositories
             context.SaveChanges();
         }
 
-
+        // ==== Cancel Competition ====
+        public void CancelCompetition()
+        {
+            context.SaveChanges();
+        }
 
     }
 }
