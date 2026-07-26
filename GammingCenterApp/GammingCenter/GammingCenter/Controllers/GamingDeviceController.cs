@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GammingCenter.Controllers
 {
     [ApiController]
-    [Route("api/controller")]
+    [Route("api/[controller]")]
     public class GamingDeviceController : ControllerBase
     {
         //Allow Controller to Access Service
@@ -35,7 +35,7 @@ namespace GammingCenter.Controllers
         // 2. Update Gaming Device 
 
         [HttpPut("{deviceId}")] //tag
-        public IActionResult UpdateGamingDevice(int deviceId , GamingDeviceUpdateDto dto)
+        public IActionResult UpdateGamingDevice(int deviceId ,GamingDeviceUpdateDto dto)
         {
             bool result = _service.UpdateGamingDevice(deviceId, dto);
 
@@ -74,7 +74,7 @@ namespace GammingCenter.Controllers
         [HttpGet("{deviceId}")]
        public IActionResult SearchGamingDevice(int deviceId)
         {
-            GamingDevice device = _service.SearchGamingDevice(deviceId);
+            GamingDeviceResponseDto device =_service.SearchGamingDevice(deviceId);
 
             //validate input
             if (device == null)
@@ -89,11 +89,11 @@ namespace GammingCenter.Controllers
 
         // 5-View Available Device Method
 
-        [HttpGet("Available")]
+        [HttpGet("available")]
         public IActionResult GetAvailableDevice()
         {
-            // The service returns a list of GamingDevice objects
-            List<GamingDevice> devices = _service.GetAvailableDevices();
+            // The service returns a list of GamingDeviceResponseDto
+            List<GamingDeviceResponseDto> devices =_service.GetAvailableDevices();
 
             return Ok(devices);
         }
@@ -103,9 +103,9 @@ namespace GammingCenter.Controllers
 
         // 5-change Status Device Method
         [HttpPut("{deviceId}/status")]
-        public IActionResult changeDeviceStatus(int deviceId, ChangeDeviceStatusDto dto)
+        public IActionResult ChangeDeviceStatus(int deviceId, ChangeDeviceStatusDto dto)
         {
-            bool result = _service.changeDeviceStatus(deviceId, dto);
+            bool result = _service.ChangeDeviceStatus(deviceId, dto);
 
             //validate input
             if (!result)
