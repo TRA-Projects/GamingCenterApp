@@ -32,6 +32,26 @@ namespace GammingCenter.Repositories
             Context.SaveChanges();
         }
 
+        /////////////////////////////////////////////////////////
+
+        //3- Delete Booking Type
+        public void DeleteBookingType(BookingType bookingType)
+        {
+            Context.BookingTypes.Remove(bookingType);
+            Context.SaveChanges();
+        }
+
+        /////////////////////////////////////////////////////////
+
+        // 4-Search Booking Type By ID
+
+        // this method Used internally for Update and Delete in service to proccessing 
+
+        public BookingType GetBookingTypeById(int bookingTypeId)
+        {
+            return Context.BookingTypes.FirstOrDefault(b => b.BookingTypeID == bookingTypeId);
+        }
+
 
 
     }
