@@ -28,6 +28,7 @@
     <Folder Include="DTOs\CategoryDTO\" />
     <Folder Include="DTOs\CompetitionDTO\" />
     <Folder Include="DTOs\GamingDeviceDTO\" />
+    <Folder Include="DTOs\BookingDTOs\" />
     <Folder Include="DTOs\VisitorDTO\" />
     <Folder Include="DTOs\RoomDTO\" />
     <Folder Include="DTOs\ReviewDTO\" />
