@@ -11,12 +11,12 @@ namespace GammingCenter.Repositories
         {
             context = _context;
         }
-
-        public List<AvailableSlot> GetAllProducts()
+        // === view all available slots ====
+        public List<AvailableSlot> GetAllSlots()
         {
             return context.AvailableSlots.ToList();
         }
-
+        // === Get Slot ById ===
         public AvailableSlot GetSlotById(int id)
         {
             return context.AvailableSlots.FirstOrDefault(p => p.SlotId == id);
