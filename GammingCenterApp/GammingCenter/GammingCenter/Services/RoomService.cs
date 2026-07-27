@@ -55,5 +55,15 @@ namespace GammingCenter.Services
             // Save changes
             roomRepo.Update();
         }
+
+        //========================================================
+        // View All Rooms
+
+        // Business Logic for viewing all rooms
+        public List<Room> GetAllRooms()
+        {
+            // Get all rooms from repository
+            return roomRepo.GetAll();
+        }
     }
 }

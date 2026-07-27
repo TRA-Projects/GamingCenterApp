@@ -34,7 +34,14 @@ namespace GammingCenter.Repositories
         {
             context.SaveChanges();
         }
+        //========================================================
+        // View All Rooms
 
+        // Get all rooms from the database
+        public List<Room> GetAll()
+        {
+            return context.Rooms.ToList();
+        }
     }
     }
 

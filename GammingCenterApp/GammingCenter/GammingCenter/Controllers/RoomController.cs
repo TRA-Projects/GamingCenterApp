@@ -1,4 +1,5 @@
 ﻿using GammingCenter.DTOs.RoomDTO;
+using GammingCenter.Models;
 using GammingCenter.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -57,6 +58,18 @@ namespace GammingCenter.Controllers
             }
 
             return View(dto);
+        }
+
+        //======================================================
+        // View All Rooms
+
+        // Display all rooms
+        [HttpGet]
+        public IActionResult Index()
+        {
+            List<Room> rooms = roomService.GetAllRooms();
+
+            return View(rooms);
         }
     }
 }
