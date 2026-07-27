@@ -46,5 +46,11 @@ namespace GammingCenter.Repositories
             context.SaveChanges();
         }
 
+        // === Update Competition Status ===
+        public void UpdateCompetitionStatus()
+        {
+            context.SaveChanges();
+        }
+
     }
 }

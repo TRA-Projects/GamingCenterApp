@@ -55,18 +55,38 @@ namespace GammingCenter.Controllers
             if (!updated)
                 return NotFound();
 
-            return Ok("Successfuly Updated");
+            return Ok("Successfuly Updated"); return NoContent();
         }
 
         // ==== Cancel Competition====
+        [Authorize(Roles = "Admin")]
+        [HttpPut("CancelCompetition")]
         public IActionResult CancelCompetition(int id)
         {
             bool cnacelled = competitionService.CancelCompetition(id);
             if (!cnacelled)
                 return NotFound();
 
-            return Ok("Successfuly Deleted");
+            return Ok("Successfuly Deleted"); return NoContent();
         }
+
+        // === Update Competition Status ===
+        [Authorize(Roles = "Admin")]
+        [HttpPut("UpdateCompetitionStatus")]
+        public IActionResult UpdateCompetitionStatus(int id, string status)
+        {
+
+            bool updated = competitionService.UpdateCompetitionStatus(id, status);
+
+            if (!updated)
+                return NotFound();
+            return Ok("Successfuly Updated"); //return NoContent();
+
+        }
+
+
+
+
 
 
     }
