@@ -11,7 +11,7 @@ namespace GammingCenter.Repositories
         {
             context = _context;
         }
-        // ==== Get All Competition ====
+        // ==== view All Competition ====
         public List<Competition> GetAllCompetition()
         {
             return context.Competitions.ToList();
@@ -50,6 +50,15 @@ namespace GammingCenter.Repositories
         public void UpdateCompetitionStatus()
         {
             context.SaveChanges();
+        }
+
+        // === Search Competition by Name ===
+
+        public List<Competition> SearchCompetitionByName(string name)
+        {
+            return context.Competitions
+                          .Where(c => c.CompetitionName.ToLower().Contains(name.ToLower()))
+                          .ToList();
         }
 
     }

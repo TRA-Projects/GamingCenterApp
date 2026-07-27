@@ -8,6 +8,7 @@ namespace GammingCenter.Controllers
 {
     [ApiController]
     [Route("competition")]
+    [Authorize]
     public class CompetitionController : ControllerBase
     {
         //constructor
@@ -19,7 +20,8 @@ namespace GammingCenter.Controllers
         {
             competitionService = _competitionService;
         }
-        // ==== Get All Competition ====
+
+        // ==== view All Competition ====
         [AllowAnonymous]
         [HttpGet("GetAllCompetition")]
         public IActionResult GetAllProducts()
@@ -84,8 +86,13 @@ namespace GammingCenter.Controllers
 
         }
 
-
-
+        // === Search Competition by Name ===
+        [AllowAnonymous]
+        [HttpPut("SearchCompetitionByName")]
+        public IActionResult SearchCompetitionByName(string name)
+        {
+            return Ok(competitionService.SearchCompetitionByName(name));
+        }
 
 
 
