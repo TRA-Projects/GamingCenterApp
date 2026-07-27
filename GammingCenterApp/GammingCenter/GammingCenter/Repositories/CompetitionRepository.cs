@@ -61,5 +61,12 @@ namespace GammingCenter.Repositories
                           .ToList();
         }
 
+        public List<Competition> SearchCompetitionByStatus(string status)
+        {
+            return context.Competitions.Where(c => c.CompetitionStatus == status).ToList();
+        }
+
+
+
     }
 }

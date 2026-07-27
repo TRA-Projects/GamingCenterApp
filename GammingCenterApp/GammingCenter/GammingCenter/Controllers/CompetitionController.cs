@@ -94,7 +94,13 @@ namespace GammingCenter.Controllers
             return Ok(competitionService.SearchCompetitionByName(name));
         }
 
-
+        // === Search Competition by Status ===
+        [AllowAnonymous]
+        [HttpPut("SearchCompetitionByStatus")]
+        public IActionResult SearchCompetitionByStatus (string status)
+        {
+            return Ok(competitionService.SearchCompetitionByStatus(status));
+        }
 
     }
 }
