@@ -10,18 +10,18 @@ public class GamingDevice
 
 
 
-    [Required(ErrorMessage = "Device name is required.")]
-    [MaxLength(100, ErrorMessage = "Device name cannot exceed 100 characters.")]
+    [Required]
+    [MaxLength]
     public string DeviceName { get; set; }
 
 
-    [Required(ErrorMessage = "Device code is required.")]
-    [MaxLength(50, ErrorMessage = "Device code cannot exceed 50 characters.")]
+    [Required]
+    [MaxLength]
     public string DeviceCode { get; set; }
    
 
-    [Required(ErrorMessage = "Hourly price is required.")]
-    [Range(0.01, double.MaxValue, ErrorMessage = "Hourly price must be greater than 0.")]
+    [Required]
+    [Range(0.01, double.MaxValue)]
     [Column(TypeName = "decimal(10,2)")]
     public decimal HourlyPrice { get; set; }
  

@@ -10,12 +10,12 @@ namespace GammingCenter.Models
         public int BookingTypeID { get; set; }  // Primary Key, System Generated
 
 
-        [Required(ErrorMessage = "Booking type name is required")]
-        [MaxLength(50, ErrorMessage = "Booking type name cannot exceed 50 characters")]
+        [Required]
+        [MaxLength]
         public string TypeName { get; set; }
 
 
-        [MaxLength(250, ErrorMessage = "Description cannot exceed 250 characters")]
+        [MaxLength]
         public string Description { get; set; }
 
 
