@@ -15,7 +15,7 @@ namespace GammingCenter.Services
         {
             repo = _repo;
         }
-        // ==== Get All Competition ====
+        // ==== view All Competition ====
         public List<CompetitionOutputDTO> GetAllCompetition()
         {
             return repo.GetAllCompetition()
@@ -100,9 +100,24 @@ namespace GammingCenter.Services
 
             return true;
         }
+        // === Search Competition by Name ===
 
-
-
+        public List<CompetitionOutputDTO> SearchCompetitionByName(string name)
+        {
+            return repo.SearchCompetitionByName(name)
+               .Select(c => new CompetitionOutputDTO
+               {
+                   CompetitionId = c.CompetitionId,
+                   CompetitionName = c.CompetitionName,
+                   StartDate = c.StartDate,
+                   EndDate = c.EndDate,
+                   PlayersNo = c.PlayersNo,
+                   CompetitionStatus = c.CompetitionStatus,
+                   DevicesName = c.DevicesName,
+                   RoomId = c.RoomId
+               })
+               .ToList();
+        }
 
     }
 }
