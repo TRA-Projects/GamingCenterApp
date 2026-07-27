@@ -55,7 +55,7 @@ namespace GammingCenter.Controllers
             if (!updated)
                 return NotFound();
 
-            return Ok("Successfuly Updated"); return NoContent();
+            return Ok("Successfuly Updated"); //return NoContent();
         }
 
         // ==== Cancel Competition====
@@ -67,7 +67,7 @@ namespace GammingCenter.Controllers
             if (!cnacelled)
                 return NotFound();
 
-            return Ok("Successfuly Deleted"); return NoContent();
+            return Ok("Successfuly Deleted"); //return NoContent();
         }
 
         // === Update Competition Status ===
