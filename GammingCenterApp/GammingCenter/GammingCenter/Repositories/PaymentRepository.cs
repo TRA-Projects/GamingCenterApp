@@ -4,7 +4,7 @@ namespace GammingCenter.Repositories
 {
     public class PaymentRepository
     {
-       
+       //constructor ID
         private GammingCenterContext context;
 
         
@@ -37,11 +37,6 @@ namespace GammingCenter.Repositories
             context.SaveChanges();
         }
 
-       
-        public void Delete(Payment payment)
-        {
-            context.Payments.Remove(payment);
-            context.SaveChanges();
-        }
+      
     }
 }

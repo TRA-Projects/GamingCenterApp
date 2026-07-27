@@ -21,10 +21,17 @@ namespace GammingCenter.Models
 
 
         [Required(ErrorMessage = "Slot date is required")]
-        [DataType(DataType.Date)]
+     
         public DateTime SlotDate { get; set; }
 
         // Navigation Properties
         public virtual List<Booking> Bookings { get; set; } = new List<Booking>();
+
+        [Required]
+        [ForeignKey("Room ")]
+        public int RoomId { get; set; }
+
+        public virtual Room Room { get; set; }
+
     }
 }
