@@ -21,7 +21,8 @@ namespace GammingCenter.Services
             return repo.GetAllCompetition()
                        .Select(c => new CompetitionOutputDTO
                        {
-                           CompetitionName=c.CompetitionName,
+                           CompetitionId=c.CompetitionId,
+                           CompetitionName =c.CompetitionName,
                            StartDate = c.StartDate,
                            EndDate = c.EndDate,
                            PlayersNo = c.PlayersNo,
