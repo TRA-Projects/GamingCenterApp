@@ -119,5 +119,27 @@ namespace GammingCenter.Services
                .ToList();
         }
 
+        // === Search Competition by Status ===
+        public List<CompetitionOutputDTO> SearchCompetitionByStatus(string status)
+        {
+            return repo.SearchCompetitionByStatus(status).Select(c => new CompetitionOutputDTO
+            {
+                CompetitionId = c.CompetitionId,
+                CompetitionName = c.CompetitionName,
+                StartDate = c.StartDate,
+                EndDate = c.EndDate,
+                PlayersNo = c.PlayersNo,
+                CompetitionStatus = c.CompetitionStatus,
+                DevicesName = c.DevicesName,
+                RoomId = c.RoomId
+            }).ToList();
+        }
+
+
+
+
+
+
+
     }
 }
