@@ -52,6 +52,18 @@ namespace GammingCenter.Repositories
             return context.Rooms
                 .Any(r => r.RoomId == roomId && r.RoomStatus == "Available");
         }
+
+        //========================================================
+        // View Devices in Room
+
+        // Get all gaming devices in a specific room
+        public List<GamingDevice> GetDevicesByRoomId(int roomId)
+        {
+            return context.Rooms
+                .Where(r => r.RoomId == roomId)
+                .SelectMany(r => r.GamingDevices)
+                .ToList();
+        }
     }
     }
 
