@@ -65,5 +65,15 @@ namespace GammingCenter.Services
             // Get all rooms from repository
             return roomRepo.GetAll();
         }
+
+        //========================================================
+        // Check Room Availability
+
+        // Business Logic for checking room availability
+        public bool CheckRoomAvailability(int roomId)
+        {
+            // Check room availability using Repository
+            return roomRepo.IsRoomAvailable(roomId);
+        }
     }
 }

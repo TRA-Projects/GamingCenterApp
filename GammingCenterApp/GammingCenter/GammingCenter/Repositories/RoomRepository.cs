@@ -42,6 +42,16 @@ namespace GammingCenter.Repositories
         {
             return context.Rooms.ToList();
         }
+
+        //========================================================
+        // Check Room Availability
+
+        // Check if the room is available
+        public bool IsRoomAvailable(int roomId)
+        {
+            return context.Rooms
+                .Any(r => r.RoomId == roomId && r.RoomStatus == "Available");
+        }
     }
     }
 

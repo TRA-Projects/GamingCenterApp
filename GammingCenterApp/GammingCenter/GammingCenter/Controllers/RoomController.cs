@@ -71,5 +71,17 @@ namespace GammingCenter.Controllers
 
             return View(rooms);
         }
+
+        //======================================================
+        // Check Room Availability
+
+        // Check if a room is available
+        [HttpGet]
+        public IActionResult CheckAvailability(int id)
+        {
+            bool available = roomService.CheckRoomAvailability(id);
+
+            return Json(available);
+        }
     }
 }
