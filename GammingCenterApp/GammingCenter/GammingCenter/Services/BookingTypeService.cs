@@ -75,13 +75,26 @@ namespace GammingCenter.Services
         // 4- View Booking Types
         public List<BookingTypeResponseDto> GetBookingTypes()
         {
+            // Retrieve all booking types from DB through Repo
             List<BookingType> bookingTypes = _repository.GetBookingTypes();
 
-            List<BookingTypeResponseDto> responseDtos = bookingTypes.Select(bookingTypes => new BookingTypeResponseDto
+            // Convert each BookingType Model into a BookingTypeResponseDto To return only required date to user
+            List<BookingTypeResponseDto> responseDtos = bookingTypes.Select(
+
+                // Take each BookingType object from the list
+                bookingTypes =>
+
+                // Create new Response DTO for current BookingType
+                new BookingTypeResponseDto
             {
+                    // Map the BookingType from  Model to Response DTO
+                    BookingTypeID = bookingTypes.BookingTypeID,
+                TypeName = bookingTypes.TypeName,
+                Description = bookingTypes.Description
 
+            }).ToList();
 
-            };
+            return responseDtos;
         }
 
     }
