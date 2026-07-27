@@ -23,6 +23,9 @@ namespace GammingCenter.Models
         public string Email { get; set; } // user input
 
         [Required]
+        public string PasswordHash { get; set; } // system generated — BCrypt hash
+
+        [Required]
         [MaxLength(3)]
         public int Age { get; set; } // user input
 
