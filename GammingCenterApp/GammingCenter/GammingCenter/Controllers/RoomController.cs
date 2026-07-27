@@ -83,5 +83,17 @@ namespace GammingCenter.Controllers
 
             return Json(available);
         }
+
+        //======================================================
+        // View Devices in Room
+
+        // Display all gaming devices in a room
+        [HttpGet]
+        public IActionResult ViewDevices(int id)
+        {
+            List<GamingDevice> devices = roomService.GetDevicesInRoom(id);
+
+            return View(devices);
+        }
     }
 }

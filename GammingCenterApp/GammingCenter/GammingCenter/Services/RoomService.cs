@@ -75,5 +75,14 @@ namespace GammingCenter.Services
             // Check room availability using Repository
             return roomRepo.IsRoomAvailable(roomId);
         }
+        //========================================================
+        // View Devices in Room
+
+        // Business Logic for viewing gaming devices in a room
+        public List<GamingDevice> GetDevicesInRoom(int roomId)
+        {
+            // Get devices from repository
+            return roomRepo.GetDevicesByRoomId(roomId);
+        }
     }
 }
