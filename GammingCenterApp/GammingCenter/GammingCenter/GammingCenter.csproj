@@ -32,6 +32,7 @@
     <Folder Include="DTOs\BookingDTO\" />
     <Folder Include="DTOs\AvailableSlotDTO\" />
     <Folder Include="DTOs\CategoryDTO\" />
+    <Folder Include="DTOs\RoomDTO\" />
     <Folder Include="DTOs\VisitorDTO\" />
     <Folder Include="DTOs\ReviewDTO\" />
   </ItemGroup>
