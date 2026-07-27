@@ -11,16 +11,16 @@ namespace GammingCenter.Models
         public int SlotId { get; set; }
 
 
-        [Required(ErrorMessage = "Duration is required")]
-        [Range(1, 24, ErrorMessage = "Duration must be between 1 and 24 hours")]
+        [Required]
+        [Range(1, 24)]
         public int Duration { get; set; }
 
 
-        [Required(ErrorMessage = "Availability status is required")]
+        [Required]
         public bool IsAvailable { get; set; } = true;
 
 
-        [Required(ErrorMessage = "Slot date is required")]
+        [Required]
      
         public DateTime SlotDate { get; set; }
 
