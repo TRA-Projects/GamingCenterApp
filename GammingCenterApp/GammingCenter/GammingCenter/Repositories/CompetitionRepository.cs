@@ -17,7 +17,7 @@ namespace GammingCenter.Repositories
             return context.Competitions.ToList();
         }
 
-
+        // ====Get Competition by Id====
         public Competition GetCompetitionById(int id)
         {
             return context.Competitions

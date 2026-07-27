@@ -33,6 +33,21 @@ namespace GammingCenter.Services
                        .ToList();
         }
 
+        // ====Get Competition by Id====
+        public CompetitionOutputDTO GetCompetitionById (int id)
+        {
+            Competition c = repo.GetCompetitionById(id);
+            CompetitionOutputDTO output = new CompetitionOutputDTO();
+            output.CompetitionId = c.CompetitionId;
+            output.CompetitionName = c.CompetitionName;
+            output.StartDate = c.StartDate;
+            output.EndDate = c.EndDate;
+            output.PlayersNo = c.PlayersNo;
+            output.CompetitionStatus = c.CompetitionStatus;
+            output.DevicesName = c.DevicesName;
+            output.RoomId = c.RoomId;
+            return output;
+        }
 
         // ==== Create Competition =====
         public int CreateCompetition(CompetitionInputDTO dto)
