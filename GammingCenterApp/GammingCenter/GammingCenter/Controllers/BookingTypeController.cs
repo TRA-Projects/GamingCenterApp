@@ -68,6 +68,16 @@ namespace GammingCenter.Controllers
             return Ok("Booking type Deleted successfully");
         }
 
+        ////////////////////////////////////////////////////////
+
+        // 4- View Booking Types
+        public IActionResult GetBookingTypes()
+        {
+            List<BookingTypeResponseDto> bookingTypeRespons = _service.GetBookingTypes();
+
+            return Ok(bookingTypeRespons);
+        }
+
 
 
     }
