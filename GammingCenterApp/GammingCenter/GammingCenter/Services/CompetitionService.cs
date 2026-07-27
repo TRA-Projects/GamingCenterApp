@@ -85,6 +85,22 @@ namespace GammingCenter.Services
 
             return true;
         }
+        // === Update Competition Status ===
+        public bool UpdateCompetitionStatus(int id,string status)
+        {
+            Competition competition = repo.GetCompetitionById(id);
+
+            if (competition == null)
+                return false;
+
+            competition.CompetitionStatus = status;
+
+            repo.UpdateCompetitionStatus();
+
+            return true;
+        }
+
+
 
 
     }
