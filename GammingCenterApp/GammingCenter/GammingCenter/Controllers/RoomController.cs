@@ -35,5 +35,28 @@ namespace GammingCenter.Controllers
 
             return View(dto);
         }
+        //======================================================
+        // Update Room
+
+        // Display Update Room page
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            return View();
         }
+
+        // Update room information
+        [HttpPost]
+        public IActionResult Edit(int id, RoomDTO dto)
+        {
+            if (ModelState.IsValid)
+            {
+                roomService.UpdateRoom(id, dto);
+
+                return RedirectToAction("Index");
+            }
+
+            return View(dto);
+        }
+    }
 }

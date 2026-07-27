@@ -20,7 +20,20 @@ namespace GammingCenter.Repositories
             context.SaveChanges();
         }
 
+        //========================================================
+        // Update Room
 
+        // Find a room by its ID
+        public Room GetById(int roomId)
+        {
+            return context.Rooms.FirstOrDefault(r => r.RoomId == roomId);
+        }
+
+        // Save any changes made to the database
+        public void Update()
+        {
+            context.SaveChanges();
+        }
 
     }
     }
