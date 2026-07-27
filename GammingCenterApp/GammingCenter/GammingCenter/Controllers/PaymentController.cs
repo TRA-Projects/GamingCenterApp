@@ -17,6 +17,13 @@ namespace GammingCenter.Controllers
         {
             paymentService = _paymentService;
         }
+
+        private EmailService emailService;
+        public PaymentController(EmailService _EmailService)
+        {
+            emailService = _EmailService;
+        }
+
         // ====== View All Payments ======
         [HttpGet("GetAllPayments")]
         public IActionResult GetAllPayments()
@@ -32,7 +39,9 @@ namespace GammingCenter.Controllers
         public IActionResult MakePayment( PaymentInputDTO payment)
         {
             int paymentId = paymentService.MakePayment(payment);
-
+            emailService.SendEmailAsync("Email To:example@gmail.com",
+            "subject:sucssfully Paid",
+            "The payment process is sucssfuly Done");
             return Ok(new { PaymentId = paymentId });
         }
 

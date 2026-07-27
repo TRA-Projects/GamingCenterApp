@@ -4,25 +4,26 @@ namespace GammingCenter.DTOs.CompetitionDTO
 {
     public class CompetitionInputDTO
     {
-        [Required]
-        [MaxLength(100)]
+
+        [Required(ErrorMessage = "Competition name is required.")]
+        [MaxLength(100, ErrorMessage = "Competition name cannot exceed 100 characters.")]
         public string CompetitionName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Start date is required.")]
         public DateTime StartDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "End date is required.")]
         public DateTime EndDate { get; set; }
 
-        [Required]
-        [Range(2, 100)]
+        [Required(ErrorMessage = "Number of players is required.")]
+        [Range(2, 100, ErrorMessage = "Number of players must be between 2 and 100.")]
         public int PlayersNo { get; set; }
 
-        [Required]
-        [MaxLength(100)]
+        [Required(ErrorMessage = "Device name is required.")]
+        [MaxLength(100, ErrorMessage = "Device name cannot exceed 100 characters.")]
         public string DevicesName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Room Id is required.")]
         public int RoomId { get; set; }
     }
 
