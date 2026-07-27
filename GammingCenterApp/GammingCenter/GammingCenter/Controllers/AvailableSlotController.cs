@@ -32,7 +32,7 @@ namespace GammingCenter.Controllers
             return NoContent(); //204 no data
         }
         // === Get all slot by Id ===
-        public IActionResult GetSlotById([FromRoute] int id)
+        public IActionResult GetSlotById(int id)
         {
             AvailableSlotOutputDTO slot = availableSlotService.GetSlotById(id);
             if (slot == null)
@@ -48,7 +48,7 @@ namespace GammingCenter.Controllers
         // ====== Add Slot ======
         //[Authorize(Roles = "Admin")]
         [HttpPost("Add")]
-        public IActionResult Add([FromBody] AvailableSlotInputDTO slot)
+        public IActionResult Add( AvailableSlotInputDTO slot)
         {
             int slotId = availableSlotService.AddSlot(slot);
 
@@ -58,7 +58,7 @@ namespace GammingCenter.Controllers
         // ====== Update Slot ======
         //[Authorize(Roles = "Admin")]
         [HttpPost("UpdateSlots/{SlotId}")]
-        public IActionResult UpdateSlot([FromRoute] int SlotId, [FromQuery] DateTime newSlotDate, [FromQuery] int newDuration)
+        public IActionResult UpdateSlot( int SlotId,  DateTime newSlotDate,int newDuration)
         {
             bool updated = availableSlotService.UpdateSlot(SlotId, newSlotDate, newDuration);
             if (!updated)
@@ -70,7 +70,7 @@ namespace GammingCenter.Controllers
         // ====== Delete Slot ======
         //[Authorize(Roles = "Admin")]
         [HttpDelete("Delete/{SlotId}")]
-        public IActionResult DeleteSlot([FromRoute] int SlotId)
+        public IActionResult DeleteSlot( int SlotId)
         {
             bool deleted = availableSlotService.DeleteSlot(SlotId);
 
