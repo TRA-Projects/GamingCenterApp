@@ -8,6 +8,7 @@ namespace GammingCenter.Controllers
 {
     [ApiController]
     [Route("competition")]
+    [Authorize]
     public class CompetitionController : ControllerBase
     {
         //constructor
@@ -19,7 +20,8 @@ namespace GammingCenter.Controllers
         {
             competitionService = _competitionService;
         }
-        // ==== Get All Competition ====
+
+        // ==== view All Competition ====
         [AllowAnonymous]
         [HttpGet("GetAllCompetition")]
         public IActionResult GetAllProducts()
@@ -55,7 +57,7 @@ namespace GammingCenter.Controllers
             if (!updated)
                 return NotFound();
 
-            return Ok("Successfuly Updated"); return NoContent();
+            return Ok("Successfuly Updated"); //return NoContent();
         }
 
         // ==== Cancel Competition====
@@ -67,7 +69,7 @@ namespace GammingCenter.Controllers
             if (!cnacelled)
                 return NotFound();
 
-            return Ok("Successfuly Deleted"); return NoContent();
+            return Ok("Successfuly Deleted"); //return NoContent();
         }
 
         // === Update Competition Status ===
@@ -84,10 +86,21 @@ namespace GammingCenter.Controllers
 
         }
 
+        // === Search Competition by Name ===
+        [AllowAnonymous]
+        [HttpPut("SearchCompetitionByName")]
+        public IActionResult SearchCompetitionByName(string name)
+        {
+            return Ok(competitionService.SearchCompetitionByName(name));
+        }
 
-
-
-
+        // === Search Competition by Status ===
+        [AllowAnonymous]
+        [HttpPut("SearchCompetitionByStatus")]
+        public IActionResult SearchCompetitionByStatus (string status)
+        {
+            return Ok(competitionService.SearchCompetitionByStatus(status));
+        }
 
     }
 }
