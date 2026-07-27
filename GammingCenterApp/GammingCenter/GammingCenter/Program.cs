@@ -52,9 +52,10 @@ namespace GammingCenter
             builder.Services.AddScoped<BookingService>();
             builder.Services.AddScoped<BookingTypeService>();
             builder.Services.AddScoped<AvailableSlotService>();
+            builder.Services.AddScoped<EmailService>();
 
             ////////////////////////////////////////////////////////////////////
-            
+
 
 
 
