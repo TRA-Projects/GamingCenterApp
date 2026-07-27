@@ -7,7 +7,7 @@ namespace GammingCenter.Repositories
 {
     public class GamingDeviceRepository
     {
-        //All Repo to access Db context
+        //Allow Repo to access Db context
         private readonly GammingCenterContext Context;
 
         public GamingDeviceRepository(GammingCenterContext _Context)

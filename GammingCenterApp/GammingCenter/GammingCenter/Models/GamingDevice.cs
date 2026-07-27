@@ -6,28 +6,25 @@ public class GamingDevice
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int DeviceID { get; set; }
-    // Primary Key, System Generated
+    public int DeviceID { get; set; } // Primary Key, System Generated
+
 
 
     [Required(ErrorMessage = "Device name is required.")]
     [MaxLength(100, ErrorMessage = "Device name cannot exceed 100 characters.")]
     public string DeviceName { get; set; }
-    // Required, Max 100 characters
 
 
     [Required(ErrorMessage = "Device code is required.")]
     [MaxLength(50, ErrorMessage = "Device code cannot exceed 50 characters.")]
     public string DeviceCode { get; set; }
-    // Required, Max 50 characters
-
+   
 
     [Required(ErrorMessage = "Hourly price is required.")]
     [Range(0.01, double.MaxValue, ErrorMessage = "Hourly price must be greater than 0.")]
     [Column(TypeName = "decimal(10,2)")]
     public decimal HourlyPrice { get; set; }
-    // Required, Greater than 0, Decimal(10,2)
-
+ 
 
     [Required]
     [MaxLength(20)]
