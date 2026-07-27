@@ -1,4 +1,5 @@
 ﻿using GammingCenter.DTOs.AvailableSlotDTO;
+using GammingCenter.DTOs.CompetitionDTO;
 using GammingCenter.Models;
 using GammingCenter.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -14,8 +15,33 @@ namespace GammingCenter.Services
         {
             repo = _repo;
         }
+        // === Get all slots === 
+        public List <AvailableSlotOutputDTO> GetAllSlots()
+        {
+            return repo.GetAllSlots().Select(slot => new AvailableSlotOutputDTO
+            {
+                SlotId = slot.SlotId,
+                Duration = slot.Duration,
+                IsAvailable = slot.IsAvailable,
+                SlotDate = slot.SlotDate
+            }).ToList();
+        }
+
+        // === Get all slot by Id ===
+         public AvailableSlotOutputDTO GetSlotById(int id)
+        {
+            AvailableSlot slot = repo.GetSlotById(id);
+            AvailableSlotOutputDTO output = new AvailableSlotOutputDTO();
+            output.SlotId = slot.SlotId;
+            output.Duration = slot.Duration;
+            output.IsAvailable = slot.IsAvailable;
+            output.SlotDate = slot.SlotDate;
+            return output;
+        }
+
+
         // ====== Add Slot ======
-        public int AddSlot(AvailableSlotDTOs dto)
+        public int AddSlot(AvailableSlotInputDTO dto)
         {
             AvailableSlot slot = new AvailableSlot();
 
