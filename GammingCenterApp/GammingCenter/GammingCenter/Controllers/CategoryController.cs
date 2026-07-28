@@ -23,7 +23,7 @@ namespace GammingCenter.Controllers
         // 1-Add Category
 
         [HttpPost]
-        public IActionResult AddCategory(CreateCategoryDto dto)
+        public IActionResult AddCategory([FromBody] CreateCategoryDto dto)
         {
             int categoryId = _service.AddCategory(dto);
 
@@ -34,7 +34,7 @@ namespace GammingCenter.Controllers
         // 2-Update Category
 
         [HttpPut("{categoryId}")]
-        public IActionResult UpdateCategory(int categoryId, UpdateCategoryDto dto)
+        public IActionResult UpdateCategory([FromRoute] int categoryId, [FromBody] UpdateCategoryDto dto)
         {
             bool result = _service.UpdateCategory(categoryId, dto);
 
@@ -51,7 +51,7 @@ namespace GammingCenter.Controllers
         // 3-Delete Category Method
 
         [HttpDelete("{categoryId}")]
-        public IActionResult DeleteCategory(int categoryId)
+        public IActionResult DeleteCategory([FromRoute] int categoryId)
         {
             bool result = _service.DeleteCategory(categoryId);
 
@@ -68,7 +68,7 @@ namespace GammingCenter.Controllers
         // 4-View All Categories Method
 
         [HttpGet]
-        public IActionResult GetAllCategories()
+        public IActionResult GetAllCategories([FromQuery] string? search)
         {
             List<CategoryResponseDto> categories = _service.GetAllCategories();
 
@@ -79,7 +79,7 @@ namespace GammingCenter.Controllers
         // 5-View Devices by Category Method
 
         [HttpGet("{categoryId}/devices")]
-        public IActionResult GetDevicesByCategory(int categoryId)
+        public IActionResult GetDevicesByCategory([FromRoute] int categoryId)
         {
             Category category = _service.GetDevicesByCategory(categoryId);
 

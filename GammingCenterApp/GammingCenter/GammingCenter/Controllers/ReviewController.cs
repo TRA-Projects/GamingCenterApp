@@ -22,7 +22,7 @@ namespace GammingCenter.Controllers
             // 1-Add Review
 
             [HttpPost]
-            public IActionResult AddReview(CreateReviewDto dto)
+            public IActionResult AddReview([FromBody] CreateReviewDto dto)
             {
                 ReviewResponseDto review = _service.AddReview(dto);
 
@@ -33,7 +33,7 @@ namespace GammingCenter.Controllers
             // 2-Edit Review
 
             [HttpPut("{reviewId}")]
-            public IActionResult EditReview(int reviewId, UpdateReviewDto dto)
+            public IActionResult EditReview([FromRoute] int reviewId, [FromBody] UpdateReviewDto dto)
             {
                 ReviewResponseDto result = _service.EditReview(reviewId, dto);
 
@@ -50,7 +50,7 @@ namespace GammingCenter.Controllers
             // 3-Delete Review Method
 
             [HttpDelete("{reviewId}")]
-            public IActionResult DeleteReview(int reviewId)
+            public IActionResult DeleteReview([FromRoute] int reviewId)
             {
                 bool result = _service.DeleteReview(reviewId);
 
@@ -67,8 +67,8 @@ namespace GammingCenter.Controllers
             // 4-View All Reviews Method
 
             [HttpGet]
-            public IActionResult GetAllReviews()
-            {
+            public IActionResult GetAllReviews([FromQuery] int? minRating)
+        {
                 List<ReviewResponseDto> reviews = _service.GetAllReviews();
 
                 return Ok(reviews);
