@@ -152,7 +152,7 @@ namespace GammingCenter
 
                         // Explain how to enter the JWT Token
                         Description =
-                            "Enter your JWT token: Your JWT Token {your token}"
+                            "Enter your JWT token: "
                     });
 
                 // Apply JWT Authentication to Swagger requests

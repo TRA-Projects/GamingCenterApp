@@ -5,80 +5,57 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GammingCenter.Controllers
 {
-    public class RoomController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class RoomController : ControllerBase
     {
+        private readonly RoomService roomService;
 
-        private RoomService roomService;
 
-
-        public RoomController(RoomService roomService)
+    public RoomController(RoomService roomService)
         {
             this.roomService = roomService;
         }
 
 
-
         //======================================================
         // Create Room
 
-
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-
-
         [HttpPost]
-        public IActionResult Create(
-            [FromBody] CreateRoomDTO dto)
+        public IActionResult Create([FromBody] CreateRoomDTO dto)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                roomService.CreateRoom(dto);
-
-                return RedirectToAction("Index");
+                return BadRequest(ModelState);
             }
 
-            return View(dto);
-        }
+            roomService.CreateRoom(dto);
 
+            return Ok("Room created successfully");
+        }
 
 
         //======================================================
         // Update Room
 
-
-        [HttpGet]
-        public IActionResult Edit(
-            [FromRoute] int id)
-        {
-            return View();
-        }
-
-
-
-        [HttpPost]
+        [HttpPut("{id}")]
         public IActionResult Edit(
             [FromRoute] int id,
             [FromBody] UpdateRoomDTO dto)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                roomService.UpdateRoom(id, dto);
-
-                return RedirectToAction("Index");
+                return BadRequest(ModelState);
             }
 
-            return View(dto);
-        }
+            roomService.UpdateRoom(id, dto);
 
+            return Ok("Room updated successfully");
+        }
 
 
         //======================================================
         // View All Rooms
-
 
         [HttpGet]
         public IActionResult Index()
@@ -86,39 +63,47 @@ namespace GammingCenter.Controllers
             List<Room> rooms =
                 roomService.GetAllRooms();
 
-            return View(rooms);
-        }
+            if (rooms == null || rooms.Count == 0)
+            {
+                return NoContent();
+            }
 
+            return Ok(rooms);
+        }
 
 
         //======================================================
         // Check Room Availability
 
-
-        [HttpGet]
+        [HttpGet("CheckAvailability/{id}")]
         public IActionResult CheckAvailability(
             [FromRoute] int id)
         {
             bool available =
                 roomService.CheckRoomAvailability(id);
 
-            return Json(available);
+            return Ok(available);
         }
-
 
 
         //======================================================
         // View Devices In Room
 
-
-        [HttpGet]
+        [HttpGet("{id}/Devices")]
         public IActionResult ViewDevices(
             [FromRoute] int id)
         {
             List<GamingDevice> devices =
                 roomService.GetDevicesInRoom(id);
 
-            return View(devices);
+            if (devices == null || devices.Count == 0)
+            {
+                return NoContent();
+            }
+
+            return Ok(devices);
         }
     }
+
+
 }

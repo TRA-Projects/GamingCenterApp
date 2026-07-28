@@ -31,16 +31,19 @@ namespace GammingCenter.Controllers
 
             return NoContent(); //204 no data
         }
+        
         // === Get all slot by Id ===
+        [HttpGet("{id}")]
         public IActionResult GetSlotById([FromRoute] int id)
         {
             AvailableSlotOutputDTO slot = availableSlotService.GetSlotById(id);
+
             if (slot == null)
             {
-                return NotFound(); // 404 notfound
+                return NotFound();
             }
-            return Ok(slot);   //200 succeeded
 
+            return Ok(slot);
         }
 
 
