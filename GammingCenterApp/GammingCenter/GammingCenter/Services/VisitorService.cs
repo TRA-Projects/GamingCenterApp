@@ -15,7 +15,7 @@ namespace GammingCenter.Services
         }
 
         // 1. Register Visitor:
-        public ResponseDto Register(ResponseDto dto)
+        public ResponseDto Register(RegisterVisitorDto dto)
         {
             
             if (visitorRepository.EmailExists(dto.Email))
@@ -38,7 +38,7 @@ namespace GammingCenter.Services
             response.PhoneNumber = visitor.PhoneNumber;
             response.Age = visitor.Age;
             response.Gender = visitor.Gender;
-            response.Role = dto.Role;
+            response.Role = "Visitor";
 
             return response;
         }
@@ -54,10 +54,12 @@ namespace GammingCenter.Services
             if (!validPassword)
                 return null;
 
-            LoginResponseDto response = new LoginResponseDto();
-            response.Token = "JWT_TOKEN_PLACEHOLDER";
-            response.VisitorName = visitor.VisitorName;
-            response.Role = "Visitor";
+            LoginResponseDto response = new LoginResponseDto
+            {
+                VisitorName = visitor.VisitorName,
+                Role = "Visitor",
+                Token = "" 
+            };
 
             return response;
         }

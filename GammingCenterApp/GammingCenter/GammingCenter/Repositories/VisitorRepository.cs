@@ -30,7 +30,6 @@ namespace GammingCenter.Repositories
         }
 
 
-
         // Login Visitor:
         public Visitor Login(string email)
         {
@@ -43,13 +42,11 @@ namespace GammingCenter.Repositories
         }
 
 
-
         // Update Profile:
         public void Update()
         {
             context.SaveChanges();
         }
-
 
 
         // View Booking History:
@@ -62,13 +59,11 @@ namespace GammingCenter.Repositories
         }
 
 
-
         // View Competition History:
         public List<Competition> GetCompetitionHistory()
         {
             return context.Competitions.ToList();
         }
-
 
     }
 }

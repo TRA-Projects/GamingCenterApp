@@ -13,6 +13,7 @@ namespace GammingCenter.Models
         [Required]
         [MaxLength(100)]
         public string categoryName { get; set; } // user input
+        
         [MaxLength(100)]
         public string description { get; set; } // user input 
 
