@@ -36,7 +36,7 @@ namespace GammingCenter.Controllers
 
         //[Authorize(Roles = "Admin")]
         [HttpPost("MakePayment")]
-        public IActionResult MakePayment( PaymentInputDTO payment)
+        public IActionResult MakePayment([FromBody] PaymentInputDTO payment)
         {
             int paymentId = paymentService.MakePayment(payment);
             emailService.SendEmailAsync("Email To:example@gmail.com",
@@ -47,7 +47,7 @@ namespace GammingCenter.Controllers
 
         // ==== View Payment Details by id ====
         [HttpGet("ViewPaymentDetails/{id}")]
-        public IActionResult ViewPaymentDetails(int id)
+        public IActionResult ViewPaymentDetails([FromRoute] int id)
         {
             PaymentOutputDTO payment = paymentService.GetPaymentById(id);
 
@@ -58,9 +58,9 @@ namespace GammingCenter.Controllers
         }
 
         // ==== Update Payment Status ====
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPut("UpdatePaymentStatus")]
-        public IActionResult UpdatePaymentStatus(int id, string status)
+        public IActionResult UpdatePaymentStatus([FromQuery] int id, [FromQuery] string status)
         {
             bool updated = paymentService.UpdatePaymentStatus(id, status);
 
@@ -71,8 +71,8 @@ namespace GammingCenter.Controllers
         }
 
         //==== Print Receipt ====
-        [HttpGet("PrintReceipt")]
-        public IActionResult PrintReceipt(int id)
+        [HttpGet("PrintReceipt/{id}")]
+        public IActionResult PrintReceipt([FromRoute] int id)
         {
             return Ok(paymentService.GetPaymentById(id));
         }
