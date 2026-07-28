@@ -8,12 +8,11 @@ namespace GammingCenter.Controllers
 {
     public class BookingController : Controller
     {
-        // Service object used to perform booking operations
         private BookingService bookingService;
+
 
         public BookingController(BookingService bookingService)
         {
-            // Dependency Injection
             this.bookingService = bookingService;
         }
 
@@ -21,7 +20,6 @@ namespace GammingCenter.Controllers
         //======================================================
         // Create Booking
 
-        // Display Create Booking page
         [HttpGet]
         public IActionResult Create()
         {
@@ -29,21 +27,18 @@ namespace GammingCenter.Controllers
         }
 
 
-        // Save a new booking
         [HttpPost]
-        public IActionResult Create(CreateBookingDTO dto)
+        public IActionResult Create(
+            [FromBody] CreateBookingDTO dto)
         {
             if (ModelState.IsValid)
             {
-                // Get VisitorId from JWT Token
                 int visitorId = int.Parse(
                     User.FindFirst(ClaimTypes.NameIdentifier).Value
                 );
 
 
-                // Create booking with logged-in visitor
                 bookingService.CreateBooking(dto, visitorId);
-
 
                 return RedirectToAction("Index");
             }
@@ -52,20 +47,24 @@ namespace GammingCenter.Controllers
         }
 
 
+
         //======================================================
         // Update Booking
 
-        // Display Update Booking page
+
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(
+            [FromRoute] int id)
         {
             return View();
         }
 
 
-        // Update booking
+
         [HttpPost]
-        public IActionResult Edit(int id, UpdateBookingDTO dto)
+        public IActionResult Edit(
+            [FromRoute] int id,
+            [FromBody] UpdateBookingDTO dto)
         {
             if (ModelState.IsValid)
             {
@@ -78,11 +77,14 @@ namespace GammingCenter.Controllers
         }
 
 
+
         //======================================================
         // Cancel Booking
 
+
         [HttpPost]
-        public IActionResult Cancel(int id)
+        public IActionResult Cancel(
+            [FromRoute] int id)
         {
             bookingService.CancelBooking(id);
 
@@ -90,13 +92,17 @@ namespace GammingCenter.Controllers
         }
 
 
+
         //======================================================
         // View Booking Details
 
+
         [HttpGet]
-        public IActionResult Details(int id)
+        public IActionResult Details(
+            [FromRoute] int id)
         {
-            BookingDetailsDTO booking = bookingService.GetBookingDetails(id);
+            BookingDetailsDTO booking =
+                bookingService.GetBookingDetails(id);
 
 
             if (booking == null)
@@ -109,11 +115,14 @@ namespace GammingCenter.Controllers
         }
 
 
+
         //======================================================
         // View Visitor Bookings
 
+
         [HttpGet]
-        public IActionResult VisitorBookings(int id)
+        public IActionResult VisitorBookings(
+            [FromRoute] int id)
         {
             List<BookingListDTO> bookings =
                 bookingService.GetVisitorBookings(id);
@@ -123,11 +132,15 @@ namespace GammingCenter.Controllers
         }
 
 
+
         //======================================================
         // Calculate Total Price
 
+
         [HttpGet]
-        public IActionResult CalculatePrice(int deviceId, int hours)
+        public IActionResult CalculatePrice(
+            [FromRoute] int deviceId,
+            [FromRoute] int hours)
         {
             decimal totalPrice =
                 bookingService.CalculateTotalPrice(deviceId, hours);
@@ -137,11 +150,15 @@ namespace GammingCenter.Controllers
         }
 
 
+
         //======================================================
         // Check Device Availability
 
+
         [HttpGet]
-        public IActionResult CheckAvailability(int deviceId, int slotId)
+        public IActionResult CheckAvailability(
+            [FromRoute] int deviceId,
+            [FromRoute] int slotId)
         {
             bool available =
                 bookingService.CheckDeviceAvailability(deviceId, slotId);

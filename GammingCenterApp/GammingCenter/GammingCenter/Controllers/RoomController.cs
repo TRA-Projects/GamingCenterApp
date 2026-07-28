@@ -7,25 +7,32 @@ namespace GammingCenter.Controllers
 {
     public class RoomController : Controller
     {
-        // Service object used to perform room operations
+
         private RoomService roomService;
+
 
         public RoomController(RoomService roomService)
         {
-            // Dependency Injection
             this.roomService = roomService;
         }
 
-        // Display Create Room page
+
+
+        //======================================================
+        // Create Room
+
+
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        // Save a new room
+
+
         [HttpPost]
-        public IActionResult Create(CreateRoomDTO dto)
+        public IActionResult Create(
+            [FromBody] CreateRoomDTO dto)
         {
             if (ModelState.IsValid)
             {
@@ -36,19 +43,26 @@ namespace GammingCenter.Controllers
 
             return View(dto);
         }
+
+
+
         //======================================================
         // Update Room
 
-        // Display Update Room page
+
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(
+            [FromRoute] int id)
         {
             return View();
         }
 
-        // Update room information
+
+
         [HttpPost]
-        public IActionResult Edit(int id, UpdateRoomDTO dto)
+        public IActionResult Edit(
+            [FromRoute] int id,
+            [FromBody] UpdateRoomDTO dto)
         {
             if (ModelState.IsValid)
             {
@@ -60,38 +74,49 @@ namespace GammingCenter.Controllers
             return View(dto);
         }
 
+
+
         //======================================================
         // View All Rooms
 
-        // Display all rooms
+
         [HttpGet]
         public IActionResult Index()
         {
-            List<Room> rooms = roomService.GetAllRooms();
+            List<Room> rooms =
+                roomService.GetAllRooms();
 
             return View(rooms);
         }
 
+
+
         //======================================================
         // Check Room Availability
 
-        // Check if a room is available
+
         [HttpGet]
-        public IActionResult CheckAvailability(int id)
+        public IActionResult CheckAvailability(
+            [FromRoute] int id)
         {
-            bool available = roomService.CheckRoomAvailability(id);
+            bool available =
+                roomService.CheckRoomAvailability(id);
 
             return Json(available);
         }
 
-        //======================================================
-        // View Devices in Room
 
-        // Display all gaming devices in a room
+
+        //======================================================
+        // View Devices In Room
+
+
         [HttpGet]
-        public IActionResult ViewDevices(int id)
+        public IActionResult ViewDevices(
+            [FromRoute] int id)
         {
-            List<GamingDevice> devices = roomService.GetDevicesInRoom(id);
+            List<GamingDevice> devices =
+                roomService.GetDevicesInRoom(id);
 
             return View(devices);
         }
