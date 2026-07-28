@@ -59,13 +59,6 @@ namespace GammingCenter.Models
         public virtual AvailableSlot AvailableSlot { get; set; } // navigation property
 
 
-        // Competition
-        //every booking for one competition
-        [Required]
-        [ForeignKey("Competition")]
-        public int CompetitionId { get; set; }
-
-        public virtual Competition Competition { get; set; } // navigation property
 
 
 
