@@ -36,6 +36,7 @@ namespace GammingCenter.Models
             public virtual List<Competition> Competitions { get; set; } = new List<Competition>();
 
         public virtual List<GamingDevice> GamingDevices { get; set; } = new List<GamingDevice>();
+        public virtual List<AvailableSlot> AvailableSlots { get; set; } = new List<AvailableSlot>();
 
     }
 }

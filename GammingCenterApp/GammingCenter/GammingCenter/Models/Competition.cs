@@ -49,5 +49,8 @@ namespace GammingCenter.Models
        
         public virtual Room Room { get; set; }
 
+
+        public virtual List<Booking> Bookings { get; set; } = new List<Booking>();
+
     }
 }
