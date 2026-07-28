@@ -1,5 +1,4 @@
 ﻿using GammingCenter.DTOs.Auth;
-using GammingCenter.DTOs.VisitorDTO;
 using GammingCenter.Models;
 using GammingCenter.Repositories;
 using Microsoft.IdentityModel.Tokens;
@@ -141,10 +140,12 @@ namespace GammingCenter.Services
 
             // Create JWT Token
             var token =
-                new JwtSecurityToken(
-                    claims: claims,
-                    expires: DateTime.UtcNow.AddHours(2),
-                    signingCredentials: credentials);
+     new JwtSecurityToken(
+         issuer: _configuration["Jwt:Issuer"],
+         audience: _configuration["Jwt:Audience"],
+         claims: claims,
+         expires: DateTime.UtcNow.AddHours(2),
+         signingCredentials: credentials);
 
             // Return JWT Token
             return new JwtSecurityTokenHandler()

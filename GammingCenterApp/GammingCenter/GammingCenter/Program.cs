@@ -105,8 +105,11 @@ namespace GammingCenter
                             ),
 
 
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
+                        ValidateIssuer = true,
+                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+
+                        ValidateAudience = true,
+                        ValidAudience = builder.Configuration["Jwt:Audience"],
 
                         ValidateLifetime = true
                     };
@@ -149,7 +152,7 @@ namespace GammingCenter
 
                         // Explain how to enter the JWT Token
                         Description =
-                            "Enter your JWT token: Bearer {your token}"
+                            "Enter your JWT token: Your JWT Token {your token}"
                     });
 
                 // Apply JWT Authentication to Swagger requests

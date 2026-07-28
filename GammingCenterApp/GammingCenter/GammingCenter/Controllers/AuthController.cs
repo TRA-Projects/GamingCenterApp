@@ -1,5 +1,4 @@
 ﻿using GammingCenter.DTOs.Auth;
-using GammingCenter.DTOs.VisitorDTO;
 using GammingCenter.Services;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,129 +1,97 @@
 ﻿using GammingCenter.DTOs.VisitorDTO;
 using GammingCenter.Models;
 using GammingCenter.Repositories;
-using Microsoft.Win32;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace GammingCenter.Services
 {
     public class VisitorService
     {
-        private VisitorRepository visitorRepository;
+        private readonly VisitorRepository visitorRepository;
 
-        public VisitorService(VisitorRepository _visitorRepository)
+    // Constructor
+    public VisitorService(VisitorRepository _visitorRepository)
         {
             visitorRepository = _visitorRepository;
         }
 
-        // 1. Register Visitor:
-        public ResponseDto Register(RegisterVisitorDto dto)
+        // 1. Update Visitor Profile
+        public ResponseDto UpdateProfile(
+            int visitorId,
+            UpdateVisitorDto dto)
         {
-            
-            if (visitorRepository.EmailExists(dto.Email))
-                return null;
+            Visitor visitor =
+                visitorRepository.GetById(visitorId);
 
-            Visitor visitor = new Visitor();
-            visitor.VisitorName = dto.VisitorName;
-            visitor.PhoneNumber = dto.PhoneNumber;
-            visitor.Email = dto.Email;
-            visitor.PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
-            visitor.Age = dto.Age;
-            visitor.Gender = dto.Gender;
-
-            visitorRepository.RegisterVisitor(visitor);
-
-            ResponseDto response = new ResponseDto();
-            response.VisitorId = visitor.VisitorId;
-            response.VisitorName = visitor.VisitorName;
-            response.Email = visitor.Email;
-            response.PhoneNumber = visitor.PhoneNumber;
-            response.Age = visitor.Age;
-            response.Gender = visitor.Gender;
-            response.Role = "Visitor";
-
-            return response;
-        }
-
-        // 2. Login:
-        public LoginResponseDto Login(LoginVisitorDto dto)
-        {
-            Visitor visitor = visitorRepository.Login(dto.Email);
-            if (visitor == null)
-                return null;
-
-            bool validPassword = BCrypt.Net.BCrypt.Verify(dto.Password, visitor.PasswordHash);
-            if (!validPassword)
-                return null;
-
-            LoginResponseDto response = new LoginResponseDto
-            {
-                VisitorName = visitor.VisitorName,
-                Role = "Visitor",
-                Token = "" 
-            };
-
-            return response;
-        }
-
-        // 3. Update Profile:
-        public ResponseDto UpdateProfile(int visitorId, ResponseDto dto)
-        {
-            Visitor visitor = visitorRepository.GetById(visitorId);
+            // Check if visitor exists
             if (visitor == null)
             {
                 return null;
             }
 
+            // Update Visitor Information
             visitor.VisitorName = dto.VisitorName;
             visitor.PhoneNumber = dto.PhoneNumber;
-            visitor.Email = dto.Email;
             visitor.Age = dto.Age;
             visitor.Gender = dto.Gender;
 
+            // Save changes
             visitorRepository.Update();
 
-            ResponseDto response = new ResponseDto();
-            response.VisitorId = visitor.VisitorId;
-            response.VisitorName = visitor.VisitorName;
-            response.Email = visitor.Email;
-            response.PhoneNumber = visitor.PhoneNumber;
-            response.Age = visitor.Age;
-            response.Gender = visitor.Gender;
-            response.Role = "Visitor";
+            // Create response
+            ResponseDto response = new ResponseDto
+            {
+                VisitorId = visitor.VisitorId,
+                VisitorName = visitor.VisitorName,
+                Email = visitor.Email,
+                PhoneNumber = visitor.PhoneNumber,
+                Age = visitor.Age,
+                Gender = visitor.Gender,
+                Role = visitor.Role
+            };
 
             return response;
         }
 
-        // 4. View Booking History:
+        // 2. View Visitor Profile By ID
+        public ResponseDto GetById(int id)
+        {
+            Visitor visitor =
+                visitorRepository.GetById(id);
+
+            // Check if visitor exists
+            if (visitor == null)
+            {
+                return null;
+            }
+
+            // Create response
+            ResponseDto response = new ResponseDto
+            {
+                VisitorId = visitor.VisitorId,
+                VisitorName = visitor.VisitorName,
+                Email = visitor.Email,
+                PhoneNumber = visitor.PhoneNumber,
+                Age = visitor.Age,
+                Gender = visitor.Gender,
+                Role = visitor.Role
+            };
+
+            return response;
+        }
+
+        // 3. View Booking History
         public Visitor GetBookingHistory(int visitorId)
         {
             return visitorRepository.GetBookingHistory(visitorId);
         }
 
-        // 5. View Competition History:
+        // 4. View Competition History
         public List<Competition> GetCompetitionHistory()
         {
             return visitorRepository.GetCompetitionHistory();
         }
-
-        // Get Profile By ID:
-        public ResponseDto GetById(int id)
-        {
-            Visitor visitor = visitorRepository.GetById(id);
-            if (visitor == null)
-                return null;
-
-            ResponseDto response = new ResponseDto();
-            response.VisitorId = visitor.VisitorId;
-            response.VisitorName = visitor.VisitorName;
-            response.Email = visitor.Email;
-            response.PhoneNumber = visitor.PhoneNumber;
-            response.Age = visitor.Age;
-            response.Gender = visitor.Gender;
-            response.Role = "Visitor";
-
-            return response;
-        }
-
-
     }
+
+
 }

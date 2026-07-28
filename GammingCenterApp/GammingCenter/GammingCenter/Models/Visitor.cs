@@ -1,45 +1,42 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
 namespace GammingCenter.Models
 {
     public class Visitor
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int VisitorId { get; set; } // system generated
+        public int VisitorId { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string VisitorName { get; set; } // user input
+        public string VisitorName { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(9)]
-        public string PhoneNumber { get; set; } // user input
+        public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(100)]
-        public string Email { get; set; } // user input
+        public string Email { get; set; } = string.Empty;
 
         [Required]
-        public string PasswordHash { get; set; } // system generated — BCrypt hash
+        public string PasswordHash { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(3)]
-        public int Age { get; set; } // user input
+        public int Age { get; set; }
 
         [Required]
         [MaxLength(10)]
-        public string Gender { get; set; } // user input
+        public string Gender { get; set; } = string.Empty;
 
-        public string Role { get; set; }
+        public string Role { get; set; } = string.Empty;
 
-
-        // Navigation Property
-        // reverse navigation - one Visitor can write many Reviews
+        // One Visitor can write many Reviews
         public List<Review> Reviews { get; set; } = new List<Review>();
 
+        // One Visitor can have many Bookings
         public List<Booking> bookings { get; set; } = new List<Booking>();
     }
 }
