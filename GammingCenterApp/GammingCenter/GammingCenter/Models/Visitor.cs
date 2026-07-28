@@ -33,6 +33,7 @@ namespace GammingCenter.Models
         [MaxLength(10)]
         public string Gender { get; set; } // user input
 
+        public string Role { get; set; }
 
 
         // Navigation Property
