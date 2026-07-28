@@ -1,7 +1,9 @@
 ﻿namespace GammingCenter.DTOs.RoomDTO
 {
-    public class RoomDTO
+    public class RoomDetailsDTO
     {
+        public int RoomId { get; set; }
+
         public string RoomName { get; set; }
 
         public string RoomType { get; set; }

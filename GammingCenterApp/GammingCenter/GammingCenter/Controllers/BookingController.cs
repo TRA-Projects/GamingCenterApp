@@ -2,12 +2,12 @@
 using GammingCenter.Models;
 using GammingCenter.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace GammingCenter.Controllers
 {
     public class BookingController : Controller
     {
-        //create booking
         // Service object used to perform booking operations
         private BookingService bookingService;
 
@@ -17,6 +17,10 @@ namespace GammingCenter.Controllers
             this.bookingService = bookingService;
         }
 
+
+        //======================================================
+        // Create Booking
+
         // Display Create Booking page
         [HttpGet]
         public IActionResult Create()
@@ -24,20 +28,33 @@ namespace GammingCenter.Controllers
             return View();
         }
 
+
         // Save a new booking
         [HttpPost]
-        public IActionResult Create(BookingDTO dto)
+        public IActionResult Create(CreateBookingDTO dto)
         {
             if (ModelState.IsValid)
             {
-                bookingService.CreateBooking(dto);
+                // Get VisitorId from JWT Token
+                int visitorId = int.Parse(
+                    User.FindFirst(ClaimTypes.NameIdentifier).Value
+                );
+
+
+                // Create booking with logged-in visitor
+                bookingService.CreateBooking(dto, visitorId);
+
 
                 return RedirectToAction("Index");
             }
 
             return View(dto);
         }
+
+
         //======================================================
+        // Update Booking
+
         // Display Update Booking page
         [HttpGet]
         public IActionResult Edit(int id)
@@ -45,9 +62,10 @@ namespace GammingCenter.Controllers
             return View();
         }
 
+
         // Update booking
         [HttpPost]
-        public IActionResult Edit(int id, BookingDTO dto)
+        public IActionResult Edit(int id, UpdateBookingDTO dto)
         {
             if (ModelState.IsValid)
             {
@@ -57,8 +75,9 @@ namespace GammingCenter.Controllers
             }
 
             return View(dto);
-
         }
+
+
         //======================================================
         // Cancel Booking
 
@@ -68,20 +87,18 @@ namespace GammingCenter.Controllers
             bookingService.CancelBooking(id);
 
             return RedirectToAction("Index");
-
         }
+
 
         //======================================================
         // View Booking Details
 
-        // Display booking details
         [HttpGet]
         public IActionResult Details(int id)
         {
-            Booking booking = bookingService.GetBookingDetails(id);
+            BookingDetailsDTO booking = bookingService.GetBookingDetails(id);
 
 
-            // Check if booking exists
             if (booking == null)
             {
                 return NotFound();
@@ -91,38 +108,43 @@ namespace GammingCenter.Controllers
             return View(booking);
         }
 
+
         //======================================================
         // View Visitor Bookings
 
-        // Display all bookings for a visitor
         [HttpGet]
         public IActionResult VisitorBookings(int id)
         {
-            List<Booking> bookings = bookingService.GetVisitorBookings(id);
+            List<BookingListDTO> bookings =
+                bookingService.GetVisitorBookings(id);
 
 
             return View(bookings);
         }
+
+
         //======================================================
         // Calculate Total Price
 
-        // Calculate booking total price
         [HttpGet]
         public IActionResult CalculatePrice(int deviceId, int hours)
         {
-            decimal totalPrice = bookingService.CalculateTotalPrice(deviceId, hours);
+            decimal totalPrice =
+                bookingService.CalculateTotalPrice(deviceId, hours);
 
 
             return Json(totalPrice);
         }
+
+
         //======================================================
         // Check Device Availability
 
-        // Check if device is available
         [HttpGet]
         public IActionResult CheckAvailability(int deviceId, int slotId)
         {
-            bool available = bookingService.CheckDeviceAvailability(deviceId, slotId);
+            bool available =
+                bookingService.CheckDeviceAvailability(deviceId, slotId);
 
 
             return Json(available);
