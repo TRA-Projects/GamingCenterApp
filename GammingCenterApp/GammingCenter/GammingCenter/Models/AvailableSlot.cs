@@ -27,11 +27,6 @@ namespace GammingCenter.Models
         // Navigation Properties
         public virtual List<Booking> Bookings { get; set; } = new List<Booking>();
 
-        [Required]
-        [ForeignKey("Room ")]
-        public int RoomId { get; set; }
-
-        public virtual Room Room { get; set; }
-
+        
     }
 }
