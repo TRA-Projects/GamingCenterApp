@@ -11,29 +11,25 @@ namespace GammingCenter.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoomId { get; set; }
 
-
-        [Required(ErrorMessage = "Room name is required")]
-        [MaxLength(100, ErrorMessage = "Room name cannot exceed 100 characters")]
+        [Required]
+        [MaxLength(100)]
         public string RoomName { get; set; }
 
+        [Required]
+        [MaxLength(50)]
+        public string RoomType { get; set; }
 
-        [Required(ErrorMessage = "Room type is required")]
-        [MaxLength(50, ErrorMessage = "Room type cannot exceed 50 characters")]
-        public string RoomType { get; set; } 
-
-
-        [Required(ErrorMessage = "Capacity is required")]
-        [Range(1, 100, ErrorMessage = "Capacity must be between 1 and 100")]
+        [Required]
+        [Range(1, 100)]
         public int Capacity { get; set; }
 
+        [Required]
+        [MaxLength(30)]
+        public string RoomStatus { get; set; } = "Available";        //Available, Occupied, Reserved, Maintenance 
 
-        [Required(ErrorMessage = "Room status is required")]
-        [MaxLength(30, ErrorMessage = "Room status cannot exceed 30 characters")]
-        public string RoomStatus { get; set; } = "Available"; //Available, Occupied, Reserved, Maintenance 
 
-
-       //Navigation Properties
-            public virtual List<Competition> Competitions { get; set; } = new List<Competition>();
+        //Navigation Properties
+        public virtual List<Competition> Competitions { get; set; } = new List<Competition>();
 
         public virtual List<GamingDevice> GamingDevices { get; set; } = new List<GamingDevice>();
 

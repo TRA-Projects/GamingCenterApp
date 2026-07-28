@@ -17,7 +17,7 @@ namespace GammingCenter.Services
         }
 
         // Business Logic for creating a room
-        public void CreateRoom(RoomDTO dto)
+        public void CreateRoom(CreateRoomDTO dto)
         {
             Room room = new Room();
 
@@ -35,7 +35,7 @@ namespace GammingCenter.Services
         // Update Room
 
         // Business Logic for updating room information
-        public void UpdateRoom(int roomId, RoomDTO dto)
+        public void UpdateRoom(int roomId, UpdateRoomDTO dto)
         {
             // Retrieve room from database
             Room room = roomRepo.GetById(roomId);

@@ -6,7 +6,6 @@ namespace GammingCenter.Services
 {
     public class BookingService
     {
-        //Crate booking
         // Repository object used to access booking data
         private BookingRepository bookingRepo;
 
@@ -16,148 +15,119 @@ namespace GammingCenter.Services
             this.bookingRepo = bookingRepo;
         }
 
-        // Business Logic for creating a booking
-        public void CreateBooking(BookingDTO dto)
+        //========================================================
+        // Create Booking
+
+        public void CreateBooking(CreateBookingDTO dto, int visitorId)
         {
             Booking booking = new Booking();
 
-            booking.VisitorId = dto.VisitorId;
+            booking.VisitorId = visitorId;
             booking.GamingDeviceId = dto.GamingDeviceId;
             booking.BookingTypeId = dto.BookingTypeId;
             booking.AvailableSlotId = dto.AvailableSlotId;
             booking.PlayerNumber = dto.PlayerNumber;
             booking.TotalPrice = dto.TotalPrice;
 
-            // Set booking date automatically
             booking.BookingDate = DateTime.Now;
-
-            // Set default booking status
             booking.Status = "Pending";
 
-            // Save booking using Repository
             bookingRepo.AddBooking(booking);
         }
-        //========================================================
-        //update booking
 
-        // Business Logic for updating a booking
-        public void UpdateBooking(int bookingId, BookingDTO dto)
+        //========================================================
+        // Update Booking
+
+        public void UpdateBooking(int bookingId, UpdateBookingDTO dto)
         {
-            // Retrieve booking from database
             Booking booking = bookingRepo.GetById(bookingId);
 
-            // Check if booking exists
             if (booking == null)
-            {
                 return;
-            }
 
-            // Update booking information
-            booking.VisitorId = dto.VisitorId;
             booking.GamingDeviceId = dto.GamingDeviceId;
             booking.BookingTypeId = dto.BookingTypeId;
             booking.AvailableSlotId = dto.AvailableSlotId;
             booking.PlayerNumber = dto.PlayerNumber;
             booking.TotalPrice = dto.TotalPrice;
 
-            // Save changes
             bookingRepo.Update();
         }
 
         //========================================================
         // Cancel Booking
 
-        // Business Logic for cancelling a booking
         public void CancelBooking(int bookingId)
         {
-            // Retrieve booking from database
             Booking booking = bookingRepo.GetById(bookingId);
 
-
-            // Check if booking exists
             if (booking == null)
-            {
                 return;
-            }
 
-
-            // Change booking status instead of deleting it
             booking.Status = "Cancelled";
 
-
-            // Save changes
             bookingRepo.Update();
         }
 
         //========================================================
         // View Booking Details
 
-        // Business Logic for viewing booking details
-        public Booking GetBookingDetails(int bookingId)
+        public BookingDetailsDTO GetBookingDetails(int bookingId)
         {
-            // Get booking from database
             Booking booking = bookingRepo.GetById(bookingId);
 
-
-            // Check if booking exists
             if (booking == null)
-            {
                 return null;
-            }
 
-
-            // Return booking details
-            return booking;
+            return new BookingDetailsDTO
+            {
+                BookingId = booking.BookingId,
+                BookingDate = booking.BookingDate,
+                VisitorId = booking.VisitorId,
+                GamingDeviceId = booking.GamingDeviceId,
+                BookingTypeId = booking.BookingTypeId,
+                AvailableSlotId = booking.AvailableSlotId,
+                PlayerNumber = booking.PlayerNumber,
+                TotalPrice = booking.TotalPrice,
+                Status = booking.Status
+            };
         }
 
         //========================================================
         // View Visitor Bookings
 
-        // Business Logic for viewing visitor bookings
-        public List<Booking> GetVisitorBookings(int visitorId)
+        public List<BookingListDTO> GetVisitorBookings(int visitorId)
         {
-            // Get visitor bookings from repository
             List<Booking> bookings = bookingRepo.GetByVisitorId(visitorId);
 
-
-            // Return bookings list
-            return bookings;
+            return bookings.Select(b => new BookingListDTO
+            {
+                BookingId = b.BookingId,
+                BookingDate = b.BookingDate,
+                TotalPrice = b.TotalPrice,
+                Status = b.Status
+            }).ToList();
         }
 
         //========================================================
         // Calculate Total Price
 
-        // Business Logic for calculating booking price
         public decimal CalculateTotalPrice(int gamingDeviceId, int hours)
         {
-            // Get device information
             GamingDevice device = bookingRepo.GetGamingDeviceById(gamingDeviceId);
 
-
-            // Check if device exists
             if (device == null)
-            {
                 return 0;
-            }
 
-
-            // Calculate total price
-            decimal totalPrice = device.HourlyPrice * hours;
-
-
-            return totalPrice;
+            return device.HourlyPrice * hours;
         }
+
         //========================================================
         // Check Device Availability
 
-        // Business Logic for checking device availability
         public bool CheckDeviceAvailability(int deviceId, int slotId)
         {
-            // Ask repository to check availability
-            bool available = bookingRepo.IsDeviceAvailable(deviceId, slotId);
-
-
-            return available;
+            return bookingRepo.IsDeviceAvailable(deviceId, slotId);
         }
     }
 }

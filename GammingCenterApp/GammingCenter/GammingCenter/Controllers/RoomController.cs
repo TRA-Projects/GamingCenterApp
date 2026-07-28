@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GammingCenter.Controllers
 {
-    public class RoomController: Controller
+    public class RoomController : Controller
     {
         // Service object used to perform room operations
         private RoomService roomService;
@@ -25,7 +25,7 @@ namespace GammingCenter.Controllers
 
         // Save a new room
         [HttpPost]
-        public IActionResult Create(RoomDTO dto)
+        public IActionResult Create(CreateRoomDTO dto)
         {
             if (ModelState.IsValid)
             {
@@ -48,7 +48,7 @@ namespace GammingCenter.Controllers
 
         // Update room information
         [HttpPost]
-        public IActionResult Edit(int id, RoomDTO dto)
+        public IActionResult Edit(int id, UpdateRoomDTO dto)
         {
             if (ModelState.IsValid)
             {

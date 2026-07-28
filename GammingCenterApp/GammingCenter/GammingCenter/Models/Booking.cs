@@ -8,21 +8,22 @@ namespace GammingCenter.Models
         [Key]
         public int BookingId { get; set; }
 
-        [Required(ErrorMessage = "Booking Date is required")]
+        [Required]
         public DateTime BookingDate { get; set; }
 
-        [Required(ErrorMessage = "Player Number is required")]
+        [Required]
         [Range(1, 20)]
         public int PlayerNumber { get; set; }
 
-        [Required(ErrorMessage ="Total price is required")]
+        [Required]
         [Column(TypeName = "decimal(10,2)")]
         [Range(0.01, double.MaxValue)]
         public decimal TotalPrice { get; set; }
 
-        [Required(ErrorMessage = "Status is required")]
+        [Required]
         [StringLength(30)]
         public string Status { get; set; }
+
         //==============================================
         // Gaming Device
         [Required]
