@@ -56,7 +56,7 @@ namespace GammingCenter.Services
             payment.paymentMethod = dto.paymentMethod;
             payment.bookingId = dto.bookingId;
 
-            payment.paymentStatus = "Pending";
+            payment.paymentStatus = "Paid";
 
             repo.Add(payment);
 
