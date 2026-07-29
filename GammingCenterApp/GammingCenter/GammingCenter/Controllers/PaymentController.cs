@@ -11,17 +11,13 @@ namespace GammingCenter.Controllers
     public class PaymentController : ControllerBase
     {
         //constructor - DI
-        private PaymentService paymentService;
+        private readonly PaymentService paymentService;
+        private readonly EmailService emailService;
 
-        public PaymentController(PaymentService _paymentService)
+        public PaymentController(PaymentService _paymentService, EmailService _emailService)
         {
             paymentService = _paymentService;
-        }
-
-        private EmailService emailService;
-        public PaymentController(EmailService _EmailService)
-        {
-            emailService = _EmailService;
+            emailService = _emailService;
         }
 
         // ====== View All Payments ======
