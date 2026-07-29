@@ -68,7 +68,7 @@ namespace GammingCenter.Controllers
         // 4-View All Categories Method
 
         [HttpGet]
-        public IActionResult GetAllCategories([FromQuery] string? search)
+        public IActionResult GetAllCategories()
         {
             List<CategoryResponseDto> categories = _service.GetAllCategories();
 
