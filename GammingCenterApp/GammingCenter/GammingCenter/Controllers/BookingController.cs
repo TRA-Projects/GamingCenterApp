@@ -12,18 +12,17 @@ namespace GammingCenter.Controllers
     {
         private readonly BookingService bookingService;
 
-
-    public BookingController(BookingService bookingService)
+        public BookingController(BookingService bookingService)
         {
             this.bookingService = bookingService;
         }
 
-
         //======================================================
         // Create Booking
+
         [Authorize]
         [HttpPost]
-        public IActionResult Create([FromBody] CreateBookingDTO dto)
+        public async Task<IActionResult> Create([FromBody] CreateBookingDTO dto)
         {
             if (!ModelState.IsValid)
             {
@@ -39,11 +38,10 @@ namespace GammingCenter.Controllers
 
             int visitorId = int.Parse(claim.Value);
 
-            bookingService.CreateBooking(dto, visitorId);
+            await bookingService.CreateBooking(dto, visitorId);
 
-            return Ok("Booking created successfully");
+            return Ok("Booking created successfully. Confirmation email sent.");
         }
-
 
         //======================================================
         // Update Booking
@@ -60,9 +58,8 @@ namespace GammingCenter.Controllers
 
             bookingService.UpdateBooking(id, dto);
 
-            return Ok("Booking updated successfully");
+            return Ok("Booking updated successfully.");
         }
-
 
         //======================================================
         // Cancel Booking
@@ -72,27 +69,20 @@ namespace GammingCenter.Controllers
         {
             bookingService.CancelBooking(id);
 
-            return Ok("Booking cancelled successfully");
+            return Ok("Booking cancelled successfully.");
         }
-
 
         //======================================================
-        // View Booking Details
+        // View All Bookings
 
-        [HttpGet("{id}")]
-        public IActionResult Details([FromRoute] int id)
+        [HttpGet]
+        public IActionResult GetAllBookings()
         {
-            BookingDetailsDTO booking =
-                bookingService.GetBookingDetails(id);
+            List<BookingListDTO> bookings =
+                bookingService.GetAllBookings();
 
-            if (booking == null)
-            {
-                return NotFound("Booking not found");
-            }
-
-            return Ok(booking);
+            return Ok(bookings);
         }
-
 
         //======================================================
         // View Visitor Bookings
@@ -105,7 +95,6 @@ namespace GammingCenter.Controllers
 
             return Ok(bookings);
         }
-
 
         //======================================================
         // Calculate Total Price
@@ -121,7 +110,6 @@ namespace GammingCenter.Controllers
             return Ok(totalPrice);
         }
 
-
         //======================================================
         // Check Device Availability
 
@@ -136,6 +124,4 @@ namespace GammingCenter.Controllers
             return Ok(available);
         }
     }
-
-
 }

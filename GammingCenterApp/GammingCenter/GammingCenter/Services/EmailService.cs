@@ -1,55 +1,48 @@
 ﻿using MailKit.Net.Smtp;
+using Microsoft.Extensions.Configuration;
 using MimeKit;
 
 namespace GammingCenter.Services
 {
     public class EmailService
     {
-        public async Task SendEmailAsync(
-            string toEmail,
-            string subject,
-            string body)
+        private readonly IConfiguration configuration;
+
+        public EmailService(IConfiguration configuration)
         {
-            // Create a new email message
+            this.configuration = configuration;
+        }
+
+        public async Task SendEmailAsync(string toEmail, string subject, string body)
+        {
             var email = new MimeMessage();
 
-            // Set the sender email
-            email.From.Add(
-                new MailboxAddress(
-                    "Gaming Center",
-                    "your-email@gmail.com"));
+            email.From.Add(new MailboxAddress(
+                configuration["EmailSettings:DisplayName"],
+                configuration["EmailSettings:From"]));
 
-            // Set the receiver email
-            email.To.Add(
-                MailboxAddress.Parse(toEmail));
+            email.To.Add(MailboxAddress.Parse(toEmail));
 
-            // Set the email subject
             email.Subject = subject;
 
-            // Set the email body
             email.Body = new TextPart("plain")
             {
                 Text = body
             };
 
-            // Create SMTP client
             using var smtp = new SmtpClient();
 
-            // Connect to Gmail SMTP server
             await smtp.ConnectAsync(
-                "smtp.gmail.com",
-                587,
+                configuration["EmailSettings:Host"],
+                int.Parse(configuration["EmailSettings:Port"]),
                 MailKit.Security.SecureSocketOptions.StartTls);
 
-            // Authenticate using Gmail App Password
             await smtp.AuthenticateAsync(
-                "your-email@gmail.com",
-                "your-app-password");
+                configuration["EmailSettings:Username"],
+                configuration["EmailSettings:Password"]);
 
-            // Send the email
             await smtp.SendAsync(email);
 
-            // Disconnect from SMTP server
             await smtp.DisconnectAsync(true);
         }
     }
