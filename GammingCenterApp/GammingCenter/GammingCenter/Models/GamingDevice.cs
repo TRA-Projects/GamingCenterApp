@@ -24,11 +24,11 @@ public class GamingDevice
     [Range(0.01, double.MaxValue)]
     [Column(TypeName = "decimal(10,2)")]
     public decimal HourlyPrice { get; set; }
- 
+
 
     [Required]
     [MaxLength(20)]
-    public string Status { get; set; }
+    public string Status { get; set; } = "Available";
 
     public bool IsAvailable { get; set; }
 

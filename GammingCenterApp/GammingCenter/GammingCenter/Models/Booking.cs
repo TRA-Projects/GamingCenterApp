@@ -22,7 +22,7 @@ namespace GammingCenter.Models
 
         [Required]
         [StringLength(30)]
-        public string Status { get; set; }
+        public string Status { get; set; } 
 
         //==============================================
         // Gaming Device
