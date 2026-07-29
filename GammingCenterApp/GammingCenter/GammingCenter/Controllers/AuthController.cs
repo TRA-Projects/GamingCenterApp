@@ -9,11 +9,13 @@ namespace GammingCenter.Controllers
     public class AuthController : ControllerBase
     {
         private readonly AuthService _service;
+        private readonly EmailService emailService;
 
         // Constructor
-        public AuthController(AuthService service)
+        public AuthController(AuthService service,EmailService _emailService)
         {
             _service = service;
+            emailService = _emailService;
         }
 
         /////////////////////////////////////////////////////////
@@ -33,6 +35,8 @@ namespace GammingCenter.Controllers
                 return BadRequest(
                     "Email already exists");
             }
+
+            emailService.SendEmailAsync("test@gmail.com", "Welcome to Gaming Center!", "$\"<h1>Hello {dto.VisitorName}!</h1><p>Welcome to Gaming Center. Your account has been created successfully!</p>\";"); 
 
             return Ok(
                 "Visitor registered successfully");
