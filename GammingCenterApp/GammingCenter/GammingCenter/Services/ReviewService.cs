@@ -57,9 +57,8 @@ namespace GammingCenter.Services
             response.comment = review.comment;
             response.reviewDate = review.reviewDate;
             response.visitorId = review.visitorId;
-            response.visitorName = review.Visitor != null ? review.GamingDevice.DeviceName : "";
             response.deviceId = review.deviceId;
-            response.deviceName = review.GamingDevice != null ? review.GamingDevice.DeviceName : "";
+            
 
             return response;
         }
@@ -91,9 +90,8 @@ namespace GammingCenter.Services
                 dto.comment = r.comment;
                 dto.reviewDate = r.reviewDate;
                 dto.visitorId = r.visitorId;
-                dto.visitorName = r.Visitor != null ? r.Visitor.VisitorName : "";
                 dto.deviceId = r.deviceId;
-                dto.deviceName = r.GamingDevice != null ? r.GamingDevice.DeviceName : "";
+                
 
                 responseList.Add(dto);
             }
