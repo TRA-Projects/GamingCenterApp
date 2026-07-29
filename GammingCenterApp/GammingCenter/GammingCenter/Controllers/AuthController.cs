@@ -22,6 +22,9 @@ namespace GammingCenter.Controllers
         // 1. Register Visitor
         /////////////////////////////////////////////////////////
 
+
+
+
         [HttpPost("register")]
         public IActionResult Register(
             [FromBody] RegisterDto dto)
@@ -36,7 +39,7 @@ namespace GammingCenter.Controllers
                     "Email already exists");
             }
 
-            emailService.SendEmailAsync("test@gmail.com", "Welcome to Gaming Center!", "$\"<h1>Hello {dto.VisitorName}!</h1><p>Welcome to Gaming Center. Your account has been created successfully!</p>\";"); 
+            emailService.SendEmailAsync("test@gmail.com", "Welcome to Gaming Center!", "Welcome to Gaming Center. Your account has been created successfully!;"); 
 
             return Ok(
                 "Visitor registered successfully");
