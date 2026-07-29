@@ -22,7 +22,7 @@ namespace GammingCenter.Controllers
         }
 
         // ==== view All Competition ====
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("GetAllCompetition")]
         public IActionResult GetAllProducts()
         {
@@ -37,7 +37,7 @@ namespace GammingCenter.Controllers
         }
 
         // ====Get Competition by Id====
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("GetCompetitionById/{id}")]
         public IActionResult GetCompetitionById([FromRoute] int id)
         {
@@ -52,17 +52,21 @@ namespace GammingCenter.Controllers
         }
 
         // ==== Create Competition ====
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("AddDTO")]
         public IActionResult AddDTOCompetition ([FromBody] CompetitionInputDTO competition)
         {
             int id = competitionService.CreateCompetition(competition);
-            return Ok(new { CompetitionId = id });
+            return Ok(new
+            {
+                Message = "Competition added successfully",
+                CompetitionId = id
+            });
         }
 
         // ==== Update Competition ====
-       
-        //[Authorize(Roles = "Admin")]
+
+        [Authorize(Roles = "Admin")]
         [HttpPut("UpdateCompetition/{id}")]
 
         public IActionResult UpdateCompetition ([FromRoute] int id, [FromBody] CompetitionInputDTO competition)
@@ -76,7 +80,7 @@ namespace GammingCenter.Controllers
         }
 
         // ==== Cancel Competition====
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("CancelCompetition/{id}")]
         public IActionResult CancelCompetition([FromRoute] int id)
         {
@@ -88,7 +92,7 @@ namespace GammingCenter.Controllers
         }
 
         // === Update Competition Status ===
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("UpdateCompetitionStatus/{id}")]
         public IActionResult UpdateCompetitionStatus([FromRoute] int id, [FromQuery]  string status)
         {
@@ -102,16 +106,16 @@ namespace GammingCenter.Controllers
         }
 
         // === Search Competition by Name ===
-        //[AllowAnonymous]
-        [HttpPut("SearchCompetitionByName")]
+        [AllowAnonymous]
+        [HttpGet("SearchCompetitionByName")]
         public IActionResult SearchCompetitionByName([FromQuery] string name)
         {
             return Ok(competitionService.SearchCompetitionByName(name));
         }
 
         // === Search Competition by Status ===
-        //[AllowAnonymous]
-        [HttpPut("SearchCompetitionByStatus")]
+        [AllowAnonymous]
+        [HttpGet("SearchCompetitionByStatus")]
         public IActionResult SearchCompetitionByStatus ([FromQuery]  string status)
         {
             return Ok(competitionService.SearchCompetitionByStatus(status));

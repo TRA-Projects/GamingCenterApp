@@ -19,8 +19,8 @@ namespace GammingCenter.Controllers
         }
 
         // === Get all slots === 
-        //[AllowAnonymous]
-        [HttpGet("GettAllSlots")]
+        [AllowAnonymous]
+        [HttpGet("GetAllSlots")]
         public IActionResult GetAllSlots()
         {
             List<AvailableSlotOutputDTO> result = availableSlotService.GetAllSlots();
@@ -31,9 +31,10 @@ namespace GammingCenter.Controllers
 
             return NoContent(); //204 no data
         }
-        
+
         // === Get all slot by Id ===
-        [HttpGet("{id}")]
+        [AllowAnonymous]
+        [HttpGet("GetSlotById/{id}")]
         public IActionResult GetSlotById([FromRoute] int id)
         {
             AvailableSlotOutputDTO slot = availableSlotService.GetSlotById(id);
@@ -49,18 +50,24 @@ namespace GammingCenter.Controllers
 
 
         // ====== Add Slot ======
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("Add")]
         public IActionResult Add([FromBody] AvailableSlotInputDTO slot)
         {
             int slotId = availableSlotService.AddSlot(slot);
 
-            return Ok(new { SlotId = slotId });
+            return Ok(new
+            {
+                Message = "Slot added successfully",
+                SlotId = slotId
+            });
         }
 
+
+
         // ====== Update Slot ======
-        //[Authorize(Roles = "Admin")]
-        [HttpPost("UpdateSlots/{SlotId}")]
+        [Authorize(Roles = "Admin")]
+        [HttpPut("UpdateSlots/{SlotId}")]
         public IActionResult UpdateSlot([FromRoute] int SlotId,[FromQuery] DateTime newSlotDate,[FromQuery] int newDuration)
         {
             bool updated = availableSlotService.UpdateSlot(SlotId, newSlotDate, newDuration);
@@ -71,7 +78,7 @@ namespace GammingCenter.Controllers
         }
 
         // ====== Delete Slot ======
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("Delete/{SlotId}")]
         public IActionResult DeleteSlot([FromRoute] int SlotId)
         {
@@ -81,11 +88,11 @@ namespace GammingCenter.Controllers
                 return NotFound();
 
             return Ok("deleted successfully");
-            //return NoContent();
+           
         }
 
         // ====== Update Slot Status Available / Unavailable====== 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("UpdateStatus/{SlotId}")]
         public IActionResult UpdateStatus([FromRoute] int slotId, [FromQuery] bool status)
         {
@@ -102,7 +109,7 @@ namespace GammingCenter.Controllers
         }
 
         // ====== Search Slot By Date ======
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("SearchByDate")]
         public IActionResult SearchByDate([FromQuery]  DateTime date)
         {
@@ -112,7 +119,7 @@ namespace GammingCenter.Controllers
         }
 
         // ====== View Available Slots Only====== 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("ViewAvailableSlots")]
         public IActionResult ViewAvailableSlots()
         {
