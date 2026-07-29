@@ -9,9 +9,7 @@
 
         
         public int visitorId { get; set; }
-        public string visitorName { get; set; } 
-
         public int deviceId { get; set; }
-        public string deviceName { get; set; } 
+         
     }
 }

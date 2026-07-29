@@ -4,9 +4,8 @@ namespace GammingCenter.Repositories
 {
     public class BookingRepository
     {
-        //Add booking
         // Database context used to access the database
-        private GammingCenterContext context;
+        private readonly GammingCenterContext context;
 
         public BookingRepository(GammingCenterContext context)
         {
@@ -14,21 +13,44 @@ namespace GammingCenter.Repositories
             this.context = context;
         }
 
-        // Add a new booking to the database
+        //========================================================
+        // Add Booking
+
         public void AddBooking(Booking booking)
         {
             context.Bookings.Add(booking);
             context.SaveChanges();
         }
 
-        //update booking
-        // Find a booking by its ID
+        //========================================================
+        // Get Booking By Id
+
         public Booking GetById(int bookingId)
         {
-            return context.Bookings.FirstOrDefault(b => b.BookingId == bookingId);
+            return context.Bookings
+                .FirstOrDefault(b => b.BookingId == bookingId);
         }
 
-        // Save any changes made to the database
+        //========================================================
+        // Get All Bookings
+
+        public List<Booking> GetAll()
+        {
+            return context.Bookings.ToList();
+        }
+
+        //========================================================
+        // Get Visitor By Id
+
+        public Visitor GetVisitorById(int visitorId)
+        {
+            return context.Visitors
+                .FirstOrDefault(v => v.VisitorId == visitorId);
+        }
+
+        //========================================================
+        // Update Booking
+
         public void Update()
         {
             context.SaveChanges();
@@ -37,7 +59,6 @@ namespace GammingCenter.Repositories
         //========================================================
         // View Visitor Bookings
 
-        // Get all bookings for a specific visitor
         public List<Booking> GetByVisitorId(int visitorId)
         {
             return context.Bookings
@@ -48,7 +69,6 @@ namespace GammingCenter.Repositories
         //========================================================
         // Calculate Total Price
 
-        // Get gaming device by ID
         public GamingDevice GetGamingDeviceById(int deviceId)
         {
             return context.GamingDevices
@@ -58,16 +78,13 @@ namespace GammingCenter.Repositories
         //========================================================
         // Check Device Availability
 
-        // Check if a gaming device is available
         public bool IsDeviceAvailable(int deviceId, int slotId)
         {
-            bool isBooked = context.Bookings
-                .Any(b => b.GamingDeviceId == deviceId
-                       && b.AvailableSlotId == slotId
-                       && b.Status != "Cancelled");
+            bool isBooked = context.Bookings.Any(b =>
+                b.GamingDeviceId == deviceId &&
+                b.AvailableSlotId == slotId &&
+                b.Status != "Cancelled");
 
-
-            // Return true if no active booking exists
             return !isBooked;
         }
     }

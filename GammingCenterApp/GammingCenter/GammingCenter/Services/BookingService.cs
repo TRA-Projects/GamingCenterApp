@@ -7,18 +7,24 @@ namespace GammingCenter.Services
     public class BookingService
     {
         // Repository object used to access booking data
-        private BookingRepository bookingRepo;
+        private readonly BookingRepository bookingRepo;
 
-        public BookingService(BookingRepository bookingRepo)
+        // Email service
+        private readonly EmailService emailService;
+
+        public BookingService(
+            BookingRepository bookingRepo,
+            EmailService emailService)
         {
             // Dependency Injection
             this.bookingRepo = bookingRepo;
+            this.emailService = emailService;
         }
 
         //========================================================
         // Create Booking
 
-        public void CreateBooking(CreateBookingDTO dto, int visitorId)
+        public async Task CreateBooking(CreateBookingDTO dto, int visitorId)
         {
             Booking booking = new Booking();
 
@@ -33,6 +39,25 @@ namespace GammingCenter.Services
             booking.Status = "Pending";
 
             bookingRepo.AddBooking(booking);
+
+            // Get Visitor Information
+            Visitor visitor = bookingRepo.GetVisitorById(visitorId);
+
+            if (visitor != null)
+            {
+                await emailService.SendEmailAsync(
+                    visitor.Email,
+                    "Booking Confirmation",
+                    $"Hello {visitor.VisitorName},\n\n" +
+                    $"Your booking has been created successfully.\n\n" +
+                    $"Booking ID : {booking.BookingId}\n" +
+                    $"Booking Date : {booking.BookingDate}\n" +
+                    $"Players : {booking.PlayerNumber}\n" +
+                    $"Total Price : {booking.TotalPrice}\n" +
+                    $"Status : {booking.Status}\n\n" +
+                    $"Thank you for choosing Gaming Center."
+                );
+            }
         }
 
         //========================================================
@@ -70,27 +95,19 @@ namespace GammingCenter.Services
         }
 
         //========================================================
-        // View Booking Details
+        // View All Bookings
 
-        public BookingDetailsDTO GetBookingDetails(int bookingId)
+        public List<BookingListDTO> GetAllBookings()
         {
-            Booking booking = bookingRepo.GetById(bookingId);
+            List<Booking> bookings = bookingRepo.GetAll();
 
-            if (booking == null)
-                return null;
-
-            return new BookingDetailsDTO
+            return bookings.Select(b => new BookingListDTO
             {
-                BookingId = booking.BookingId,
-                BookingDate = booking.BookingDate,
-                VisitorId = booking.VisitorId,
-                GamingDeviceId = booking.GamingDeviceId,
-                BookingTypeId = booking.BookingTypeId,
-                AvailableSlotId = booking.AvailableSlotId,
-                PlayerNumber = booking.PlayerNumber,
-                TotalPrice = booking.TotalPrice,
-                Status = booking.Status
-            };
+                BookingId = b.BookingId,
+                BookingDate = b.BookingDate,
+                TotalPrice = b.TotalPrice,
+                Status = b.Status
+            }).ToList();
         }
 
         //========================================================
