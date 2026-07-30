@@ -1,6 +1,15 @@
 # 🎮 Gaming Center Platform
 
-.NET | C# | ASP.NET Core Web API | Entity Framework Core | SQL Server | JWT | Swagger
+![.NET](https://img.shields.io/badge/.NET-8.0-purple)
+![C#](https://img.shields.io/badge/C%23-Language-blue)
+![ASP.NET Core Web API](https://img.shields.io/badge/ASP.NET%20Core-Web%20API-blueviolet)
+![SQL Server](https://img.shields.io/badge/SQL%20Server-Database-red)
+![Entity Framework Core](https://img.shields.io/badge/EF-Core-success)
+![JWT](https://img.shields.io/badge/JWT-Authentication-black)
+![Swagger](https://img.shields.io/badge/Swagger-OpenAPI-green)
+![Postman](https://img.shields.io/badge/Postman-API%20Testing-orange)
+
+
 
 A Gaming Center Management System built using ASP.NET Core Web API, Entity Framework Core, and SQL Server to manage gaming devices, competitions, bookings, payments, and customer reviews.
 
