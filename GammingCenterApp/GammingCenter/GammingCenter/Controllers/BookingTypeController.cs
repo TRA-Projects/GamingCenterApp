@@ -1,5 +1,6 @@
 ﻿using GammingCenter.DTOs.BookingType;
 using GammingCenter.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GammingCenter.Controllers
@@ -21,6 +22,7 @@ namespace GammingCenter.Controllers
         /////////////////////////////////////////////////////////
 
         // 1- Add Booking Type
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult AddGamingDevice(BookingTypeCreateDto dto)
         {

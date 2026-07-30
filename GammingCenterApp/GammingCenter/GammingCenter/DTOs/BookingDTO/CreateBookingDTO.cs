@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace GammingCenter.DTOs.BookingDTO
 {
@@ -17,6 +18,7 @@ namespace GammingCenter.DTOs.BookingDTO
         [Range(1, 20, ErrorMessage = "Player number must be between 1 and 20")]
         public int PlayerNumber { get; set; }
 
+        [JsonIgnore]
         [Required(ErrorMessage = "Total price is required")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Total price must be greater than zero")]
         public decimal TotalPrice { get; set; }
