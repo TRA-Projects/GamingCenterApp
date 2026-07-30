@@ -2,77 +2,168 @@
 
 .NET | C# | ASP.NET Core Web API | Entity Framework Core | SQL Server | JWT | Swagger
 
-A backend REST API for a Gaming Center Platform that allows visitors to explore gaming devices and competitions, check available booking slots, make bookings, complete payments, and submit reviews.
+A Gaming Center Management System built using ASP.NET Core Web API, Entity Framework Core, and SQL Server to manage gaming devices, competitions, bookings, payments, and customer reviews.
 
----
+📌 Overview
 
-## 📌 Overview
+The Gaming Center Platform is a backend Web API designed to provide visitors with a simple and organized way to explore gaming devices and competitions, check available booking slots, make bookings, complete payments, and submit reviews.
 
-The Gaming Center Platform is a backend Web API designed to manage gaming center operations and provide visitors with a seamless booking experience.
+The project demonstrates RESTful API development, Entity Framework Core relationships, CRUD operations, JWT authentication, password hashing, Repository Pattern, Service Layer, DTOs, and Swagger API documentation.
 
-The system allows visitors to register and log in securely using JWT authentication, browse available gaming devices and competitions, select a booking type, view available slots, create bookings, process payments, and submit reviews.
+🚀 Features
 
-The project demonstrates backend development concepts including RESTful APIs, Entity Framework Core, SQL Server, JWT Authentication, Repository Pattern, Service Layer, DTOs, and Swagger API documentation.
+👤 Visitor Management
+🔐 User Registration & Login
+🎮 Gaming Device Management
+🏆 Competition Management
+📅 Booking Management
+🕐 Available Slot Management
+💳 Payment Management
+⭐ Review Management
+🔑 JWT Authentication
+🔒 Password Hashing
+📊 CRUD Operations
+📚 Swagger API Documentation
+💾 SQL Server Integration
+⚡ Entity Framework Core
 
----
+📂 Project Structure
 
-## 🚀 Features
+GamingCenterApp
+│
+├── Controllers
+├── Services
+├── Repositories
+├── DTOs
+├── Models
+├── Data
+├── Migrations
+└── Program.cs
 
-### 👤 Visitor Management
-- Visitor Registration
-- Visitor Login
-- JWT Authentication
-- Secure Password Hashing
-- Visitor Profile Management
+🎯 Main Modules
 
-### 🎮 Gaming Device Management
-- View Gaming Devices
-- Manage Device Information
-- Device Categories
-- Device Availability
+Module | Description
+------- | -----------
+Visitors | Manage visitor registration and authentication
+Gaming Devices | View and manage available gaming devices
+Competitions | View and manage gaming competitions
+Booking Types | Select gaming device or competition booking
+Available Slots | View available booking time slots
+Bookings | Create and manage bookings
+Payments | Process booking payments
+Reviews | Submit reviews and ratings
 
-### 🏆 Competition Management
-- View Competitions
-- Manage Competition Information
-- Competition Availability
+🔄 System Workflow
 
-### 📅 Booking Management
-- Select Booking Type
-- Book Gaming Devices
-- Book Competitions
-- View Available Slots
-- Create Bookings
-- Manage Booking Status
+1. Visitor registers an account.
+2. Visitor logs in and receives a JWT token.
+3. Visitor views available gaming devices and competitions.
+4. Visitor selects a booking type.
+5. Visitor selects an available time slot.
+6. Visitor creates a booking.
+7. Visitor completes the payment.
+8. Booking status is updated.
+9. Visitor can submit a review for the completed booking.
 
-### 💳 Payment Management
-- Add Payment
-- Update Booking Payment Status
-- Track Payment Information
+🔐 Authentication Flow
 
-### ⭐ Review Management
-- Add Reviews
-- Submit Ratings
-- Link Reviews to Completed Bookings
-
----
-
-## 🔐 Authentication
-
-The API uses **JWT (JSON Web Token)** authentication to secure protected endpoints.
-
-### Authentication Flow
-
-```text
-Visitor
-   │
-   ▼
 Register
-   │
-   ▼
+   ↓
 Login
-   │
-   ▼
+   ↓
 JWT Token
-   │
-   ▼
+   ↓
+Authorize Request
+   ↓
 Access Protected Endpoints
+
+🛠️ Tech Stack
+
+C#
+.NET
+ASP.NET Core Web API
+Entity Framework Core
+SQL Server
+LINQ
+JWT Authentication
+BCrypt Password Hashing
+Swagger / OpenAPI
+Git & GitHub
+
+🎯 Highlights
+
+✅ RESTful Web API
+✅ Layered Architecture
+✅ Repository Pattern
+✅ Service Layer
+✅ DTOs
+✅ JWT Authentication
+✅ Secure Password Hashing
+✅ Entity Framework Core
+✅ SQL Server Database
+✅ CRUD Operations
+✅ Database Relationships
+✅ Swagger API Documentation
+✅ GitHub Collaboration
+
+⚙️ Getting Started
+
+git clone https://github.com/TRA-Projects/GamingCenterApp.git
+
+cd GamingCenterApp
+
+dotnet restore
+
+dotnet ef database update
+
+dotnet run
+
+📚 API Testing
+
+The API can be tested using Swagger or Postman.
+
+Recommended Testing Flow:
+
+1. Register Visitor
+2. Login
+3. Get JWT Token
+4. Authorize using JWT Token
+5. Get All Gaming Devices
+6. Get All Competitions
+7. Select Booking Type
+8. Get Available Slots
+9. Create Booking
+10. Add Payment
+11. Add Review
+
+📚 What I Learned
+
+Building RESTful Web APIs using ASP.NET Core
+Implementing JWT Authentication
+Securing passwords using BCrypt hashing
+Designing relational databases
+Implementing Entity Framework Core relationships
+Using Repository and Service Layer patterns
+Working with DTOs
+Performing CRUD operations
+Testing APIs using Swagger and Postman
+Working with SQL Server
+Collaborating using Git and GitHub
+
+🚀 Future Improvements
+
+Admin Dashboard
+Online Payment Gateway
+Email Notifications
+Booking Cancellation
+Advanced Role-Based Authorization
+Unit Testing
+Integration Testing
+Docker Support
+CI/CD Pipeline
+
+👩‍💻 Project
+
+Gaming Center Platform
+
+Developed as a collaborative backend project using ASP.NET Core Web API, Entity Framework Core, and SQL Server.
